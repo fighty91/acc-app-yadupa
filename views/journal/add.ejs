@@ -1,0 +1,142 @@
+<div class="row">
+    <div class="col">
+        <h2>Pencatatan Jurnal Umum</h2>
+        <% if (typeof errors !='undefined' ) { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <hr>
+        <form method="post" action="/journal">
+            <div class="d-md-flex justify-content-between">
+                <div class="col-md-3">
+                    <div class="mb-3 input-group-sm">
+                        <label for="date" class="form-label">Tanggal Transaksi:</label>
+                        <input type="date" class="form-control" id="date" name="date" value="<%= dateNow %>">
+                    </div>
+                </div>
+                <div class="form-floating col-md-8 mt-md-4 mb-3 mb-md-0">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
+                    <label for="floatingTextarea2">Deskripsi:</label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm align-self-end col-md-2" onclick="addRowHandler()">
+                Tambah Baris
+            </button>
+            <hr class="mb-0">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th>Akun</th>
+                        <th>Debet</th>
+                        <th>Kredit</th>
+                    </tr>
+                </thead>
+                <tbody id="dataInput">
+                    <tr>
+                        <td>
+                            <div class="mb-1 input-group-sm">
+                                <select class="form-select" id="account[0]" name="account[0]">
+                                    <option selected value="">-- Pilih Akun --</option>
+                                        <% parentAccs.forEach(parentAcc=> { %>
+                                            <% const accounts=childAccs.filter(acc=>
+                                                acc.parentAcc==parentAcc._id) %>
+                                            <% if (accounts.length> 0) { %>
+                                                <optgroup label="<%= parentAcc.accName %> ">
+                                                <% accounts.forEach(childAcc=> { %>
+                                                    <option value="<%= childAcc._id %>">
+                                                    <%= childAcc.accChildCode %>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <%= childAcc.accChildName %>
+                                                <% }) %>
+                                            <% } %>
+                                        <% }) %>
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mb-1 input-group-sm">
+                                <input type="number" class="form-control debet" name="debetAcc[0]"
+                                    oninput="inputHandler()" id="debetAcc[0]"
+                                    onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)"
+                                    autocomplete="off" step="any">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mb-1 input-group-sm">
+                                <input type="number" class="form-control credit" name="creditAcc[0]"
+                                    id="creditAcc[0]" oninput="inputHandler()"
+                                    onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)"
+                                    autocomplete="off" step="any">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <div class="mb-1 input-group-sm">
+                                <select class="form-select" id="account[1]" name="account[1]">
+                                    <option selected value="">-- Pilih Akun --</option>
+                                        <% parentAccs.forEach(parentAcc=> { %>
+                                            <% const accounts=childAccs.filter(acc=> acc.parentAcc==parentAcc._id)
+                                                %>
+                                            <% if (accounts.length> 0) { %>
+                                                <optgroup label="<%= parentAcc.accName %> ">
+                                                <% accounts.forEach(childAcc=> { %>
+                                                    <option value="<%= childAcc._id %>">
+                                                    <%= childAcc.accChildCode %>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <%= childAcc.accChildName %>
+                                                <% }) %>
+                                            <% } %>
+                                        <% }) %>
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mb-1 input-group-sm">
+                                <input type="number" class="form-control debet" name="debetAcc[1]"
+                                    oninput="inputHandler()" id="debetAcc[1]"
+                                    onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)"
+                                    autocomplete="off" step="any">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mb-1 input-group-sm">
+                                <input type="number" class="form-control credit" name="creditAcc[1]"
+                                    oninput="inputHandler()" id="creditAcc[1]"
+                                    onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)"
+                                    autocomplete="off" step="any">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="total" hidden class="fw-bold">
+                        <td class="text-end">Total</td>
+                        <td id="debetTotal" class="currency text-end"></td>
+                        <td id="creditTotal" class="currency text-end"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <a href="/journal" class="btn btn-secondary btn-sm fw-bold col-md-2">Kembali</a>
+
+            <button type="submit" class="btn btn-warning btn-sm fw-bold col-md-2" id="process" disabled
+                onclick="normalNumberAll()">Proses
+                Transaksi</button>
+            &nbsp;&nbsp;
+            <i>
+                <span class="fw-light" id="info"></span>
+            </i>
+        </form>
+        <br><br>
+    </div>
+</div>

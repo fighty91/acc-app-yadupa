@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Ubah Data Akun Induk</h2>
+        <br>
+        <% if (typeof errors !='undefined' ) { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <% const {_id, accName, accCode, accBalance, oldAccName,oldAccCode}=parentAcc %>
+        <form method="post" action="/parent-account?_method=PUT">
+            <input type="hidden" name="_id" value="<%= _id %>">
+            <input type="hidden" class="form-control" id="oldAccName" name="oldAccName" value="<%= oldAccName || accName %>">
+            <input type="hidden" class="form-control" id="oldAccCode" name="oldAccCode" value="<%= oldAccCode || accCode %>">
+            <div class="mb-3">
+                <label for="accName" class="form-label">Nama Akun Induk:</label>
+                <input type="text" class="form-control" id="accName" name="accName" required autofocus value="<%= accName %>">
+            </div>
+            <div class="mb-3">
+                <label for="accCode" class="form-label">No Akun:</label>
+                <input type="text" class="form-control" id="accCode" name="accCode" required value="<%= accCode %>">
+            </div>
+            <div class="mb-3">
+                <label for="accBalance" class="form-label">Saldo Normal:</label>
+                <select class="form-select" id="accBalance" name="accBalance" required>
+                    <% if (accBalance==='d' ) { %>
+                        <option selected value="d">Debet</option>
+                        <option value="k">Kredit</option>
+                    <% } else { %>
+                        <option value="d">Debet</option>
+                        <option selected value="k">Kredit</option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="accType" class="form-label">Tipe Akun:</label>
+                <select class="form-select" id="accType" name="accType" required>
+                    <% accTypes.forEach(accType=> { %>
+                        <% if (accType._id==parentAcc.accType) { %>
+                            <option selected value="<%= accType._id %>">
+                                <%= accType.typeName %>
+                            </option>
+                        <% }else{ %>
+                            <option value="<%= accType._id %>">
+                                <%= accType.typeName %>
+                            </option>
+                        <% } %>
+                    <% }) %>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-secondary" onmouseover="btnWarningHandler(this)" onmouseout="btnSecondaryHandler(this)">
+                Perbaharui Data
+            </button>
+        </form>
+    </div>
+</div>

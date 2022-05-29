@@ -1,0 +1,91 @@
+<% let debetTotal = 0; let creditTotal = 0 %>
+<div class="row">
+    <div class="col">
+        <h2 class="mb-3">
+            Neraca Saldo
+        </h2>
+        <br>
+        <table class="table table-hover table-bordered table-sm">
+            <thead>
+                <tr class="table-secondary">
+                    <th scope="col" class="text-center col-xl-1 col-md-2">
+                        No. Akun
+                    </th>
+                    <th scope="col" class="text-center">
+                        Uraian
+                    </th>
+                    <th scope="col" class="text-center">
+                        Ref
+                    </th>
+                    <th scope="col" class="text-center col-xl-2">
+                        Debet
+                    </th>
+                    <th scope="col" class="text-center col-xl-2">
+                        Kredit
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="fw-normal small">
+                <% if (childAccs.length === 0) { %>
+                    <p>Data masih kosong</p>
+                <% } %>
+                <% childAccs.forEach((childAcc, i) => { %>
+                    <% const { accChildName, accChildCode, accChildBalance } = childAcc; let indicator = 0 %>
+                    <% journals.forEach(journal => { %>
+                        <% const accLists = journal.journalTrans.find(trans => trans.accChildId == childAcc._id) %>
+                        <% if (accLists) {indicator++}%>
+                    <% }) %>
+                    <% let accValue = 0 %>
+                    <% if (indicator > 0) { %>
+                        <tr>
+                            <td class="text-center">
+                                <%= accChildCode %>
+                            </td>
+                            <td>
+                                <a href="" style="text-decoration: none; padding-left: 8px;" class="text-dark">
+                                    <%= accChildName %>
+                                </a>
+                            </td>
+                            <td></td>
+                            <td class="text-end currency" style="padding-right: 12px;">
+                                <% journals.forEach( journal => { %>
+                                    <% const accLists = journal.journalTrans.find(trans => trans.accChildId == childAcc._id) %>
+                                    <% if(accLists){ %>
+                                        <% const{ debet, credit } = accLists; accValue += debet; accValue -= credit %>
+                                    <% } %>
+                                <% }) %>
+                                <% if (accValue > 0) { %>
+                                    <% debetTotal += accValue %>
+                                    <span class="currency">
+                                        <%= accValue %>
+                                    </span>
+                                <% } %>
+                            </td>
+                            <td class="text-end currency" style="padding-right: 12px;">
+                                <% if (accValue < 0) { creditTotal += accValue %>
+                                    <span class="currency">
+                                        <%= -accValue %>
+                                    </span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% } %>
+                <% }) %>
+            </tbody>
+            <tfoot>
+                <tr class="table-secondary">
+                    <th colspan="2" style="padding-left: 40px;">
+                        Total
+                    </th>
+                    <th></th>
+                    <th class="currency text-end" style="padding-right: 12px;">
+                        <%= debetTotal %>
+                    </th>
+                    <th class="currency text-end" style="padding-right: 12px;">
+                        <%= creditTotal %>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

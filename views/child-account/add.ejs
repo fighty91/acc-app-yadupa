@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Tambah Akun</h2>
+        <br>
+        <% if (typeof errors !='undefined' ) { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <form method="post" action="/child-account">
+            <div class="mb-3">
+                <label for="accChildName" class="form-label">Nama Akun:</label>
+                <input type="text" class="form-control" id="accChildName" name="accChildName" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="parentAcc" class="form-label">Akun Induk:</label>
+                <select class="form-select" id="parentAcc" name="parentAcc" required>
+                    <option selected value="">-- Pilih Akun Induk --</option>
+                    <% parentAccs.forEach(parentAcc=> { %>
+                        <option value="<%= parentAcc._id %>">
+                            <%= parentAcc.accCode %>&nbsp;&nbsp;&nbsp;<%= parentAcc.accName %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="accChildCode" class="form-label">No Akun:</label>
+                <input type="text" class="form-control" id="accChildCode" name="accChildCode" required>
+            </div>
+            <div class="mb-3">
+                <label for="accChildBalance" class="form-label">Saldo Normal:</label>
+                <select class="form-select" id="accChildBalance" name="accChildBalance" required>
+                    <option selected value="">-- Pilih Saldo Normal --</option>
+                    <option value="d">Debet</option>
+                    <option value="k">Kredit</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-secondary" onmouseover="btnWarningHandler(this)" onmouseout="btnSecondaryHandler(this)">
+                Tambah Data
+            </button>
+        </form>
+    </div>
+</div>

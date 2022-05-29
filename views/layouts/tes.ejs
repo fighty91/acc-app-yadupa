@@ -1,0 +1,8 @@
+<select class="form-select" id="account[${i}]" name="account[${i}]">
+    <option selected value="">-- Pilih Akun --</option>
+    <% childAccs.forEach(childAcc=> { %>
+        <option value="<%= childAcc._id %>">
+            <%= childAcc.accChildCode %>&nbsp;&nbsp;&nbsp;&nbsp;<%= childAcc.accChildName %>
+        </option>
+        <% }) %>
+</select>

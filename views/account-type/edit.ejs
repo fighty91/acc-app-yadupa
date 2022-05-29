@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Ubah Tipe Akun</h2>
+        <br><br>
+        <% if (typeof errors !='undefined' ) { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <% const {_id, typeName, oldTypeName, fState}=accType %>
+        <form method="post" action="/account-type?_method=PUT">
+            <input type="hidden" name="_id" value="<%= _id %>">
+            <input type="hidden" class="form-control" id="oldTypeName" name="oldTypeName" value="<%= oldTypeName || typeName %>">
+            <div class="mb-3">
+                <label for="typeName" class="form-label">Nama Tipe Akun:</label>
+                <input type="text" class="form-control" id="typeName" name="typeName" required autofocus value="<%= typeName %>">
+            </div>
+            <div class="mb-3">
+                <label for="fState" class="form-label">Laporan:</label>
+                <select class="form-select" id="fState" name="fState" required>
+                    <% if (fState==='nr' ) { %>
+                        <option selected value="nr">Neraca</option>
+                        <option value="pl">Laba Rugi</option>
+                    <% } else { %>
+                        <option value="nr">Neraca</option>
+                        <option selected value="pl">Laba Rugi</option>
+                    <% } %>
+                </select>
+            </div>
+            <br><br>
+            <button type="submit" class="btn btn-secondary" onmouseover="btnWarningHandler(this)" onmouseout="btnSecondaryHandler(this)">
+                Perbaharui Data
+            </button>
+        </form>
+    </div>
+</div>

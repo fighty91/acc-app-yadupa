@@ -1,0 +1,186 @@
+<% childAccs.sort((a,b)=>(a.accChildCode - b.accChildCode));
+    // sortir jurnal per tanggal
+    journals.sort((a,b)=>(a.date - b.date)) %>
+
+    <div class="row">
+        <div class="col">
+            <h2 class="mb-3">
+                Buku Besar
+            </h2>
+            <br>
+
+            <% if (childAccs.length===0) { %>
+                <p>Data masih kosong</p>
+                <% } %>
+
+                    <% childAccs.forEach((childAcc,i)=> {
+                        const { accChildName, accChildCode, accChildBalance}=childAcc; let indicator=0
+                        %>
+
+
+                        <% journals.forEach(journal=> { %>
+                            <% const accLists=journal.journalTrans.find(trans=> trans.accChildId == childAcc._id)
+                                %>
+                                <% if (accLists) {indicator++}%>
+                                    <% }) %>
+
+                                        <% if (indicator>0) { %>
+
+                                            <div class="d-none d-md-flex justify-content-between">
+                                                <h6>
+                                                    Nama Akun: <%= accChildName %>
+                                                </h6>
+                                                <h6>
+                                                    No. Akun #<%= accChildCode %>
+                                                </h6>
+                                            </div>
+                                            <div class="d-md-none">
+                                                <h6>
+                                                    <%= accChildName %>
+                                                        <span>
+                                                            #<%= accChildCode %>
+                                                        </span>
+                                                </h6>
+                                            </div>
+
+                                            <table class="table table-hover table-bordered table-sm small">
+                                                <thead>
+                                                    <tr class="table-secondary">
+                                                        <th scope="col" class="text-center"
+                                                            style="padding-bottom: 19px;" rowspan="2">
+                                                            Tanggal
+                                                        </th>
+                                                        <th scope="col" rowspan="2" class="text-center"
+                                                            style="padding-bottom: 19px;">
+                                                            Deskripsi
+                                                        </th>
+                                                        <th scope="col" class="text-center" rowspan="2"
+                                                            style="padding-bottom: 19px;">
+                                                            Ref</th>
+                                                        <th scope="col" class="text-center" rowspan="2"
+                                                            style="padding-bottom: 19px;">
+                                                            Debet</th>
+                                                        <th scope="col" class="text-center" rowspan="2"
+                                                            style="padding-bottom: 19px;">
+                                                            Kredit</th>
+                                                        <th scope="col" class="text-center" colspan="2">
+                                                            Saldo
+                                                        </th>
+                                                    </tr>
+                                                    <tr class="table-secondary">
+                                                        <th scope="col" class="text-center">
+                                                            Debet</th>
+                                                        <th scope="col" class="text-center">
+                                                            Kredit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="fw-light">
+
+
+
+                                                    <% let total=0; journals.forEach(journal=> { %>
+                                                        <% const accLists=journal.journalTrans.find(trans=>
+                                                            trans.accChildId == childAcc._id)
+                                                            %>
+
+
+                                                            <% if(accLists){ %>
+
+                                                                <%const{debet,credit,info}=accLists;
+                                                                    const{_id,date,description,ref,transNumber}=journal;
+                                                                    const number=`Transaksi #${transNumber}`;
+                                                                    y=date.getFullYear(); m=String(date.getMonth() + 1);
+                                                                    d=String(date.getDate()); if(m.length===1) { m='0' +
+                                                                    m }; if(d.length===1) { d='0' + d }; const
+                                                                    transDate=`${d}-${m}-${y}`;
+                                                                    total+=debet;total-=credit%>
+
+                                                                    <tr>
+                                                                        <td class="text-center"
+                                                                            style="min-width: 80px; width: 90px;">
+                                                                            <%= transDate %>
+                                                                        </td>
+
+                                                                        <td style="width: 35%; min-width: 200px;">
+                                                                            <% const url=ref==='gj'
+                                                                                ?'/journal':ref==='rj'
+                                                                                ?'/receipt-journal':ref==='dj'
+                                                                                ?'/disbursement-journal':ref==='aj'
+                                                                                ?'/adjustment-journal':ref==='cj'
+                                                                                ?'/closing-journal':'/opening-balance';
+                                                                                %>
+
+                                                                                <a href="<%=`${url}/${_id}`%>"
+                                                                                    target="_blank"
+                                                                                    style="text-decoration: none;"
+                                                                                    class="text-dark fst-italic">
+                                                                                    <%=`${info?info:description?description:number}`%>
+                                                                                </a>
+                                                                        </td>
+                                                                        <td class="text-center" style="width: 37px;">
+                                                                            <%= `${ref==='gj' ? 'JU' : ref==='rj'
+                                                                                ? 'JPR' : ref==='dj' ? 'JPL' :ref==='aj'
+                                                                                ? 'PNY' :ref==='cj' ? 'PNT' : 'NRA' }`
+                                                                                %>
+                                                                        </td>
+                                                                        <td class="text-end currency"
+                                                                            style="width: 14%; min-width: 100px;">
+                                                                            <%= debet %>
+                                                                        </td>
+                                                                        <td class="text-end currency"
+                                                                            style="width: 14%; min-width: 100px;">
+                                                                            <%= credit %>
+                                                                        </td>
+
+                                                                        <td class="text-end"
+                                                                            style="width: 14%; min-width:100px">
+                                                                            <% if (total> 0) { %>
+                                                                                <span class="currency">
+                                                                                    <%=total%>
+                                                                                </span>
+                                                                                <%}%>
+                                                                        </td>
+                                                                        <td class="text-end"
+                                                                            style="width: 14%; min-width:100px">
+                                                                            <% if (total < 0) { %>
+                                                                                <span class="currency">
+                                                                                    <%=total%>
+                                                                                </span>
+
+                                                                                <%}%>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <% } %>
+                                                                        <% }) %>
+                                                                            <tr>
+
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                                <td> </td>
+                                                                                <td> &nbsp; </td>
+
+                                                                            </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+
+                                                        <th colspan="7">
+                                                        </th>
+
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                            <br><br>
+
+
+                                            <% } %>
+                                                <% })%>
+
+
+
+
+        </div>
+    </div>

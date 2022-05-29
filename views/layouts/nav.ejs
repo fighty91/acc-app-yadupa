@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-lg">
+        <a class="navbar-brand fw-bold text-warning" href="#"><i>Accounting App</i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Dashboard</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Kontak</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Akun
+                    </a>
+                    <ul class="dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+                        <!-- <li><a class="dropdown-item fw-bold" href="/account-type">Tipe Akun</a></li> -->
+                        <!-- <li><a class="dropdown-item fw-bold" href="/parent-account">Akun Induk</a></li> -->
+                        <li><a class="dropdown-item fw-bold" href="/child-account">Daftar Akun</a></li><li><a class="dropdown-item fw-bold" href="/opening-balance">Neraca Awal</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Jurnal
+                    </a>
+                    <ul class="dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item fw-bold" href="/journal">Jurnal Umum</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/receipt-journal">Jurnal Penerimaan</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/disbursement-journal">Jurnal Pengeluaran</a></li>
+                        <!-- <li><a class="dropdown-item fw-bold" href="#">Transfer Kas</a></li> -->
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Lainnya
+                    </a>
+                    <ul class="dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item fw-bold" href="/adjustment-journal">Jurnal Penyesuaian</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/closing-journal">Jurnal Penutup</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Laporan
+                    </a>
+                    <ul class="dropdown-menu bg-warning" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item fw-bold" href="/report/ledger">Buku Besar</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/report/trial-balance">Neraca Saldo</a></li>
+                        <!-- <li><a class="dropdown-item fw-bold" href="/report/work-sheet">Neraca Lajur</a></li> -->
+                        <li><a class="dropdown-item fw-bold" href="/report/profit-loss">Laporan Penghasilan Komprehensif</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/report/equity-change">Laporan Perubahan Aset Neto</a></li>
+                        <li><a class="dropdown-item fw-bold" href="/report/balance-sheet">Laporang Posisi Keuangan</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

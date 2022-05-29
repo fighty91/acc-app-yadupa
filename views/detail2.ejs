@@ -1,0 +1,119 @@
+<div class="container mt-e">
+    <div class="row">
+        <div class="col-md-10">
+            <h2>Detail Transaksi Jurnal</h2>
+
+
+            <div class="d-flex justify-content-end mb-1">
+                <span class="fw-light" style="padding-right: 18px;">
+                    Jurnal Umum #100001
+                </span>
+            </div>
+
+            <% if (!contact) {%>
+                <div class="alert alert-danger fw-bold" role="alert">
+                    Data contact tidak ada.
+                    <br>
+                    <a href="/contact" class="alert-link fw-normal">&laquo Kembali ke daftar contact</a>
+                </div>
+                <% } else {%>
+
+                    <table class="table">
+                        <thead>
+                            <tr class="table-secondary">
+                                <th scope="col">
+                                    <span style="padding-left: 10px;">
+                                        No. Akun
+
+                                    </span>
+                                </th>
+                                <th scope="col">Akun</th>
+                                <th scope="col" class="text-end">Debet (dalam IDR)</th>
+                                <th scope="col" class="text-end p-2">
+                                    <span style="padding-right: 10px;">
+                                        Kredit (dalam IDR)
+                                    </span>
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span style="padding-left: 10px;">
+                                        111
+                                    </span>
+                                </td>
+                                <td>
+                                    Kas
+                                </td>
+                                <td class="text-end">
+                                    50,000,000
+                                </td>
+                                <td class="text-end">
+                                    <span style="padding-right: 10px;"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span style="padding-left: 10px;">
+                                        113
+
+                                    </span>
+                                </td>
+                                <td>
+                                    Bank Mandiri
+                                </td>
+                                <td class="text-end">
+
+                                </td>
+                                <td class="text-end">
+                                    <span style="padding-right: 10px;">
+                                        50,000,000
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    <span style="padding-left: 10px;">
+                                        Total
+
+                                    </span>
+                                </th>
+                                <th>
+                                </th>
+                                <th class="text-end">
+                                    50,000,000
+                                </th>
+                                <th class="text-end">
+                                    <span style="padding-right: 10px;">
+                                        50,000,000
+                                    </span>
+                                </th>
+                            </tr>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <% } %>
+        </div>
+
+
+
+
+    </div>
+    <br>
+    <div class="row">
+        <div class="d-flex justify-content-end col-md-10">
+
+
+            <button class="btn btn-secondary btn-sm col-md-2 fw-bold">Hapus</button> &nbsp;
+
+            <a href="/journal" class="btn btn-warning btn-sm col-md-2 fw-bold">Kembali</a>
+
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col">
+        <h2 class="mb-3">
+            Jurnal Pengeluaran
+        </h2>
+        <a href="/disbursement-journal/add" class="btn btn-sm btn-secondary mb-3" onmouseover="btnWarningHandler(this)"
+            onmouseout="btnSecondaryHandler(this)">Buat Transaksi
+        </a>
+
+        <% if (msg.length !==0) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= msg %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>
+
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr class="table-secondary">
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Informasi Akun</th>
+                            <th scope="col" class="text-end">Nilai</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="small">
+
+
+                        <% const generalJournal=journals.filter(journal=> journal.ref === 'dj');
+                            generalJournal.sort((a, b)=> b.transNumber - a.transNumber);
+                            generalJournal.sort((a, b)=> b.date - a.date);
+                            if (generalJournal.length===0) { %>
+                            <tr>
+                                <td colspan="6">data masih kosong</td>
+                            </tr>
+                            <% } %>
+
+                                <% generalJournal.forEach((journal,i)=> {
+                                    const { _id, date, description, journalTrans, transNumber }=journal;
+
+                                    y = date.getFullYear();
+                                    m = String(date.getMonth() + 1);
+                                    d = String(date.getDate());
+                                    if (m.length === 1) { m = '0' + m };
+                                    if (d.length === 1) { d = '0' + d };
+                                    const dateDisplay = `${d}-${m}-${y}`;
+                                    %>
+
+                                    <tr>
+                                        <td>
+                                            <%= dateDisplay %>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                Jurnal Pengeluaran <a href="/disbursement-journal/<%= _id %>"
+                                                    style="text-decoration: none;">
+                                                    #<%= transNumber %>
+                                                </a>
+                                            </div>
+                                            <div class="fw-light fst-italic">
+                                                <% if(description.length>55){%>
+                                                    <%= `${description.substr(0,54)}.....` %>
+                                                        <%} else if(description.length>0){%>
+                                                            <%= description %>
+                                                                <%}%>
+                                            </div>
+                                        </td>
+                                        <% let totalCredit=0; let totalDebet=0 %>
+                                            <td class="fw-light fst-italic">
+                                                <% let journalAccount=[]%>
+                                                    <% journalTrans.forEach(journalTran=>{
+                                                        childAccs.map(childAcc=> {
+                                                        if(journalTran.accChildId==childAcc._id){
+                                                        journalAccount.push(childAcc.accChildName)
+
+                                                        totalCredit+=journalTran.credit;
+                                                        totalDebet+=journalTran.debet
+
+                                                        }
+                                                        });
+                                                        });
+                                                        %>
+                                                        <% let accInfo=journalAccount.join(', ');
+                                                        if(accInfo.length > 40){%>
+                                                            (<%= `${accInfo.substr(0,39)}.....` %>)
+                                                            
+                                                            <%} else {%>
+                                                                (<%= accInfo %>)
+                                                        <%}%>
+                                                </td>
+                                            <% if (totalCredit === totalDebet) { %>
+                                                <td class="currency text-end"><%= totalDebet %></td>
+                                                    <% } else { %>
+                                                <td class="text-danger fw-bold currency text-end"><%= totalDebet %></td>
+                                            <% } %>  
+                                        </tr>
+                                        <% }) %>
+                        </tbody>
+                    </table>
+        </div>
+    </div>
+
+
+    <br><br>

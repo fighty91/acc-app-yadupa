@@ -1,0 +1,304 @@
+<% const {surDefNA, surDefNAR, otherCompre} = surplusDefisit %> 
+<% const {netAssetBefore, netAssetRBefore, netAssetNow, netAssetRNow} = netAssets%> 
+
+<div class="row mb-2 d-flex justify-content-center">
+    <div class="col col-md-10 col-xl-8 mb-3 mt-4">
+        <div class="mb-3">
+            <h2 class="mb-0">
+                Laporan Perubahan Aset Neto
+            </h2>
+            <div>
+                Periode <%= date.split('-').reverse().join('-') %> 
+            </div>
+        </div>
+        <div class="d-flex">
+            <div>
+                <form method="post" action="/report/equity-change">
+                    <div class="d-flex">
+                        <div class="me-1 input-group-sm">
+                            <select class="form-select" name="year" required>
+                                <option value="" class="text-center">Tahun</option>
+                                <% years.forEach(year => { %>
+                                    <option value="<%= year %>" class="text-center"><%= year %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div >
+                            <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="ms-3">
+                <form method="post" action="/report/equity-change/periode">
+                    <div class="d-flex">
+                        <div class="me-1 input-group-sm">
+                            <select class="form-select" name="yearMonth" required>
+                                <option value="" class="text-center">Bulan</option>
+                                
+                                <% yearMonths.forEach(yearMonth => { %>
+                                    <% const yearMonthSubmit = yearMonth.split('-') %> 
+                                    <% const yearSubmit = yearMonthSubmit[0] %> 
+                                    <% const monthSubmit = yearMonthSubmit[1] %>
+                                    <% 
+                                    let month = ''
+                                    if (monthSubmit == 1) { 
+                                        month = 'Jan'
+                                    } else if (monthSubmit == 2 ){
+                                        month = 'Feb'
+                                    } else if (monthSubmit == 3 ){
+                                        month = 'Mar'
+                                    } else if (monthSubmit == 4 ){
+                                        month = 'Apr'
+                                    } else if (monthSubmit == 5 ){
+                                        month = 'Mei'
+                                    } else if (monthSubmit == 6 ){
+                                        month = 'Jun'
+                                    } else if (monthSubmit == 7 ){
+                                        month = 'Jul'
+                                    } else if (monthSubmit == 8 ){
+                                        month = 'Agu'
+                                    } else if (monthSubmit == 9 ){
+                                        month = 'Sep'
+                                    } else if (monthSubmit == 10 ){
+                                        month = 'Okt'
+                                    } else if (monthSubmit == 11 ){
+                                        month = 'Nov'
+                                    } else if (monthSubmit == 12 ){
+                                        month = 'Des'
+                                    }
+                                    %>
+                                    <option value="<%= yearMonth %>" class="text-center">
+                                        <span class="fw-bold" style="padding-right:30px;">
+                                            <%= `${month} ${yearSubmit}` %>
+
+                                        </span>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div >
+                            <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col col-md-10 col-xl-8">
+        <hr>
+        <table class="table table-hover table-borderless table-sm">          
+            <tbody>
+                <!-- Aset neto tanpa pembatasan -->
+                <tr>
+                    <th>
+                        ASET NETO TANPA PEMBATASAN DARI PEMBERI SUMBER DAYA
+                    </th>
+                    <th style="width: 170px;">
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Saldo Awal
+                    </td>
+                    <td class="text-end">
+                        <% if (netAssetBefore === 0) { %>
+                            -
+                        <% } else if  (netAssetBefore < 0) { %>
+                            (<span class="currency">
+                                <%= netAssetBefore %>
+                            </span>)
+                        <% } else { %>
+                            <span class="currency">
+                                <%= netAssetBefore %>
+                            </span>
+                        <% } %>
+                    </td>
+                </tr>
+
+                <!-- Surplus aset neto tanpa pembatasan -->
+                <tr>
+                    <td class="fst-italic">
+                        Surplus (Defisit) <%= runningPeriode %>  Berjalan
+                    </td>
+                    <td class="text-end">
+                        <% if (surDefNA === 0) { %>
+                            -
+                         <% } else if (surDefNA < 0) { %>
+                            (<span class="currency"><%= surDefNA %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= surDefNA %></span>
+                        <% } %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Aset neto yang ditambahkan (dibebaskan)
+                    </td>
+                    <td class="text-end">
+                        <% if (netAssetNow === 0) { %>
+                            -
+                        <% } else if (netAssetNow < 0) { %>
+                            (<span class="currency"><%= netAssetNow %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= netAssetNow %></span>
+                        <% } %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Saldo Sebelum Penghasilan Komprehensif Lain
+                    </th>
+                    <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;"> 
+                        <% const totalNA = netAssetBefore + surDefNA + netAssetNow %>
+                        <% if (totalNA === 0) { %>
+                            -
+                        <% } else if (totalNA < 0) { %>
+                            (<span class="currency"><%= totalNA %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= totalNA %></span>
+                        <% } %>
+                    </th>
+                </tr>
+                <tr>
+                    <td class="p-0">&nbsp;</td>
+                    <td></td>
+                </tr>
+
+                <!-- Penghasilan komprehensif lain -->
+                <tr>
+                    <th class="fst-italic">
+                        Penghasilan Komprehensif Lain
+                    </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Penghasilan Komprehensif Lainnya <%= runningPeriode %> Berjalan</td>
+                    <td class="text-end">
+                        <% if (otherCompre === 0) { %>
+                            -
+                        <% } else if (otherCompre < 0) { %>
+                            (<span class="currency"><%= otherCompre %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= otherCompre %></span>
+                        <% } %>
+                    </td>
+                </tr>
+                
+                <!-- Total aset neto tanpa pembatasan -->
+                <tr>                  
+                    <th>
+                        Total Aset Neto Tanpa Pembatasan
+                    </th>
+                    <th class="text-end" style="border-bottom: 2px solid grey; border-top: 1px solid grey;">
+                        <% const totalNAN = totalNA + otherCompre %>
+                        <% if (totalNAN === 0) { %>
+                            -
+                        <% } else if (totalNAN < 0) { %>
+                            (<span class="currency"><%= totalNAN %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= totalNAN %></span>
+                        <% } %>
+                    </th>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td></td>
+                </tr>
+
+                <!-- Aset neto pembatasan -->
+                <tr>
+                    <th>
+                        ASET NETO DENGAN PEMBATASAN DARI PEMBERI SUMBER DAYA
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Saldo Awal
+                    </td>
+                    <td class="text-end">
+                        <% if (netAssetRBefore === 0 ) {  %>
+                            -
+                        <% } else if (netAssetRBefore < 0) { %>
+                            (<span class="currency"><%= netAssetRBefore %></span>)
+                            <% } else { %>
+                            <span class="currency"><%= netAssetRBefore %></span>
+                        <% } %>                            
+                    </td>
+                </tr>
+
+                <!-- Surplus aset neto pembatasan -->
+                <tr>
+                    <td class="fst-italic">
+                        Surplus (Defisit) <%= runningPeriode %> Berjalan
+                    </td>
+                    <td class="text-end">
+                        <% if (surDefNAR === 0) { %>
+                         -
+                        <% } else if (surDefNAR < 0) { %>
+                            (<span class="currency"><%= surDefNAR %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= surDefNAR %></span>
+                        <% } %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Aset neto yang ditambahkan (dibebaskan)
+                    </td>
+                    <td class="text-end">
+                        <% if (netAssetRNow === 0) { %>
+                            -
+                        <% } else if (netAssetRNow < 0) { %>
+                            (<span class="currency"><%= netAssetRNow %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= netAssetRNow %></span>
+                        <% } %>
+                    </td>
+                </tr>
+
+                <!-- Total aset neto dengan pembatasan -->
+                <tr>
+                    <th>
+                        Total Aset Neto Dengan Pembatasan
+                    </th>
+                    <% const totalNAR = netAssetRBefore + netAssetRNow + surDefNAR %>
+                    <th class="text-end" style="border-bottom: 2px solid grey; border-top: 1px solid grey;">
+                        <% if (totalNAR === 0) { %>
+                            -
+                        <% } else if (totalNAR < 0) { %>
+                            (<span class="currency"><%= totalNAR %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= totalNAR %></span>
+                        <% } %>
+                    </th>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td></td>
+                </tr>
+
+                <!-- Total aseet neto -->
+                <tr>
+                    <th>
+                        TOTAL ASET NETO
+                    </th>
+                    <th class="text-end" style="border-bottom: 3px solid grey; border-top: 1px solid grey;"> 
+                        <% const fullNetAsset = totalNAN + totalNAR %>
+                        <% if (fullNetAsset === 0) { %>
+                            -
+                        <% } else if (fullNetAsset < 0) { %>
+                            (<span class="currency"><%= fullNetAsset %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= fullNetAsset %></span>
+                        <% } %>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

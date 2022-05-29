@@ -1,0 +1,119 @@
+<% if (!journals) {%>
+    <div class="alert alert-danger fw-bold" role="alert">
+        Data jurnal tidak ada.
+        <br>
+        <a href="/opening-balance" class="alert-link fw-normal">&laquo Kembali ke daftar Neraca Awal</a>
+    </div>
+<% } else {%>
+    <% const { _id, date, description, journalTrans, transNumber}=journals %>
+    <% y=date.getFullYear(); m=String(date.getMonth() + 1); d=String(date.getDate()) %>
+    <% if (m.length===1) { m='0' + m }; if (d.length===1) { d='0' + d }; const dateDisplay=`${d}-${m}-${y}`; %>
+    <div class="row">
+        <div class="">
+            <h2>Detail Transaksi Neraca Awal</h2>
+            <div class="d-flex justify-content-between mb-1">
+                <div class="fw-light" style="padding-right: 18px;">
+                    Tanggal Transaksi: <%= dateDisplay %>
+                </div>
+                <div class="fw-light" style="padding-right: 18px;">
+                    Neraca Awal #<%= transNumber %>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr class="table-secondary">
+                        <th scope="col">
+                            <div style="padding-left: 10px; min-width: 74px;">
+                                No. Akun
+                            </div>
+                        </th>
+                        <th scope="col">Akun</th>
+                        <th scope="col" class="text-end">Debet (dalam IDR)</th>
+                        <th scope="col" class="text-end p-2">
+                            <div style="padding-right: 10px;">
+                                Kredit (dalam IDR)
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% let totalDebet=0; let totalCredit=0 %>
+                    <% journalTrans.forEach(transRow=> { %>
+                        <tr>
+                            <% totalDebet +=transRow.debet; totalCredit+=transRow.credit %>
+                            <% childAccs.forEach(childAcc=> { %>
+                                <% if(childAcc._id==transRow.accChildId) {%>
+                                    <td>
+                                        <span style="padding-left: 10px;">
+                                            <%= childAcc.accChildCode %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <%= childAcc.accChildName %>
+                                    </td>
+                                <% } %>
+                            <% }) %>
+
+                            <td class="text-end currency">
+                                <%= transRow.debet %>
+                            </td>
+                            <td class="text-end">
+                                <span style="padding-right: 10px;" class="currency">
+                                    <%= transRow.credit %>
+                                </span>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>
+                            <span style="padding-left: 10px;">
+                                Total
+                            </span>
+                        </th>
+                        <th></th>
+                        <th class="text-end currency">
+                            <%= totalDebet %>
+                        </th>
+                        <th class="text-end">
+                            <div style="padding-right: 10px;" class="currency">
+                                <%= totalCredit %>
+                            </div>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+            <% if (description!='' ) { %>
+                <br><br>
+                <div class="col fst-italic fw-light" style="padding-left: 10px; padding-right: 10px;">
+                    Deskripsi: &nbsp;<%= description %>
+                </div>
+                <hr class="mt-1">
+                <br>
+            <% } %>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="d-flex bd-highlight mb-3 ">
+            <div class="me-auto bd-highlight col-md-2 col-lg-1 col-sm-3">
+                <a href="/opening-balance/edit/<%= _id %>" class="btn btn-secondary btn-sm fw-bold d-grid" style="pointer-events: none; cursor: default;">
+                    Ubah
+                </a>
+            </div>
+            <div class="bd-highlight col-md-2 col-lg-1 col-sm-3">
+                <form action="/opening-balance?_method=DELETE" method="POST" class="d-inline d-grid">
+                    <input type="hidden" name="_id" value="<%= _id %>">
+                    <button type="submit" class="btn btn-secondary btn-sm fw-bold" onclick="return confirm('Yakin ingin menghapus transaksi?')">
+                        Hapus
+                    </button>
+                </form>
+            </div>
+            &nbsp;&nbsp;
+            <div class="bd-highlight col-md-2 col-lg-1 col-sm-3">
+                <a href="/opening-balance" class="btn btn-warning btn-sm fw-bold d-grid">Kembali</a>
+            </div>
+        </div>
+    </div>
+<% } %>

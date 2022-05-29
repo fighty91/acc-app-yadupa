@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Tambah Data Akun Induk</h2>
+        <br>
+        <% if (typeof errors !='undefined' ) { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <form method="post" action="/parent-account">
+            <div class="mb-3">
+                <label for="accName" class="form-label">Nama Akun Induk:</label>
+                <input type="text" class="form-control" id="accName" name="accName" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="accCode" class="form-label">No Akun:</label>
+                <input type="text" class="form-control" id="accCode" name="accCode" required>
+            </div>
+            <div class="mb-3">
+                <label for="accBalance" class="form-label">Saldo Normal:</label>
+                <select class="form-select" id="accBalance" name="accBalance" required>
+                    <option selected value="">-- Pilih Saldo Normal --</option>
+                    <option value="d">Debet</option>
+                    <option value="k">Kredit</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="accType" class="form-label">Tipe Akun:</label>
+                <select class="form-select" id="accType" name="accType" required>
+                    <option selected value="">-- Pilih Tipe Akun --</option>
+                    <% accTypes.forEach(accType=> { %>
+                        <option value="<%= accType._id %>">
+                            <%= accType.typeName %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-secondary" onmouseover="btnWarningHandler(this)"
+                onmouseout="btnSecondaryHandler(this)">Tambah Data</button>
+        </form>
+    </div>
+</div>

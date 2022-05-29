@@ -1,0 +1,158 @@
+<div class="row">
+    <div class="col">
+        <h2>Pencatatan Jurnal Penerimaan</h2>
+
+        <% if (typeof errors !='undefined' ) { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+            <% } %>
+                <hr>
+                <form method="post" action="/receipt-journal">
+                    <div class="d-md-flex justify-content-between">
+                        <div class="col-lg-3 col-md-4">
+                            <div class="mb-3 input-group-sm">
+                                <label for="date" class="form-label mb-0">Tanggal Transaksi:</label>
+                                <input type="date" class="form-control" id="date" name="date" value="<%= dateNow %>">
+                            </div>
+                            <div class="input-group-sm mb-4">
+                                <label for="cashBank" class="form-label mb-0">Terima Pada:</label>
+                                <select class="form-select" id="cashBank" name="cashBank" placeholder="pilih" required>
+                                    <option selected value="">-- Pilih Akun --</option>
+                                    <% parentAccs.forEach(parentAcc=> { %>
+                                        <% const accounts=childAccs.filter(acc=> acc.parentAcc==parentAcc._id) %>
+                                            <% if (accounts.length>0) { %>
+                                                <optgroup label="<%= parentAcc.accName %> ">
+                                                    <% accounts.forEach(childAcc=> { %>
+                                                        <option value="<%= childAcc._id %>">
+                                                            <%= childAcc.accChildCode %>
+                                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                <%= childAcc.accChildName %>
+                                                        </option>
+                                                        <% }) %>
+                                                            <% } %>
+                                                                <% }) %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-floating col-md-7 col-lg-8 mt-md-4 mb-3 mb-md-0">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                style="height: 150px" name="description"></textarea>
+                            <label for="floatingTextarea">Deskripsi:</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary btn-sm align-self-end col-md-2"
+                        onclick="addRowHandler2()">
+                        Tambah Baris
+                    </button>
+
+                    <hr class="mb-0">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Akun</th>
+                                <th>Informasi</th>
+                                <th>Nilai</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataInput">
+                            <tr>
+                                <td>
+                                        <div class="mb-1 input-group-sm">
+                                            <select class="form-select" id="account[0]" name="account[0]">
+                                                <option selected value="">-- Pilih Akun --</option>
+                                                <% parentAccs.forEach(parentAcc=> { %>
+                                                    <% const accounts=childAccs.filter(acc=>
+                                                        acc.parentAcc==parentAcc._id) %>
+                                                        <% if (accounts.length>0) { %>
+                                                            <optgroup label="<%= parentAcc.accName %> ">
+
+                                                                <% accounts.forEach(childAcc=> { %>
+                                                                    <option value="<%= childAcc._id %>">
+                                                                        <%= childAcc.accChildCode %>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                            <%= childAcc.accChildName %>
+                                                                    </option>
+                                                                    <% }) %>
+                                                                        <% } %>
+                                                                            <% }) %>
+                                            </select>
+                                        </div>
+                                </td>
+                                <td>
+                                    <div class="mb-1 input-group-sm">
+                                        <input type="text" class="form-control" name="information[0]"
+                                            id="information[0]">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mb-1 input-group-sm">
+                                        <input type="number" class="form-control text-end acc-value" name="creditAcc[0]"
+                                            id="creditAcc[0]" oninput="accRequired2()"
+                                            onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)"
+                                            autocomplete="off" style="padding-right: 15px;" step="any">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <div class="mb-1 input-group-sm">
+                                        <select class="form-select" id="account[1]" name="account[1]">
+                                            <option selected value="">-- Pilih Akun --</option>
+                                            <% parentAccs.forEach(parentAcc=> { %>
+                                                <% const accounts=childAccs.filter(acc=> acc.parentAcc==parentAcc._id)
+                                                    %>
+                                                    <% if (accounts.length>0) { %>
+                                                        <optgroup label="<%= parentAcc.accName %> ">
+                                                            <% accounts.forEach(childAcc=> { %>
+                                                                <option value="<%= childAcc._id %>">
+                                                                    <%= childAcc.accChildCode %>
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        <%= childAcc.accChildName %>
+                                                                </option>
+                                                                <% }) %>
+                                                                    <% } %>
+                                                                        <% }) %>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mb-1 input-group-sm">
+                                        <input type="text" class="form-control" name="information[1]"
+                                            id="information[1]">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mb-1 input-group-sm">
+                                        <input type="number" class="form-control text-end acc-value" name="creditAcc[1]"
+                                            oninput="accRequired2()" id="creditAcc[1]"
+                                            onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)"
+                                            autocomplete="off" style="padding-right: 15px;" step="any">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+
+                    <a href="/receipt-journal" class="btn btn-secondary btn-sm fw-bold col-md-2">Kembali</a>
+
+                    <button type="submit" class="btn btn-warning btn-sm fw-bold col-md-2" id="process"
+                        onclick="normalNumberAll2()" disabled>Proses
+                        Transaksi</button>
+                    &nbsp;&nbsp;
+                    <i>
+                        <span class="fw-light" id="info"></span>
+                    </i>
+                </form>
+                <br><br>
+    </div>
+</div>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <style>
+        .credit,
+        .debet {
+            text-align: right;
+            padding-right: 15px !important;
+        }
+    </style>
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <%- include('nav') %>
+        <br>
+        <div class="container-lg">
+            <%- body %>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <br><br><br>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+        <script>
+            let journalInfo = ''
+            const debet = document.getElementsByClassName('debet')
+            const credit = document.getElementsByClassName('credit')
+
+            // halaman tambah data jurnal umum
+            const inputHandler = () => {
+                sameDK()
+                accRequired()
+            }
+
+            const accRequired = () => {
+                for (let i = 0; i < debet.length; i++) {
+                    const debetStrings = debet[i].value.split(',')
+                    const creditStrings = credit[i].value.split(',')
+
+                    let debetTemp = ''
+                    let creditTemp = ''
+                    debetStrings.forEach(debetString => debetTemp += debetString)
+                    creditStrings.forEach(creditString => creditTemp += creditString)
+
+                    if (+debetTemp > 0 || +creditTemp > 0) {
+                        document.getElementById(`account[${i}]`).setAttribute('required', '');
+                    } else {
+                        document.getElementById(`account[${i}]`).removeAttribute('required')
+                    }
+                }
+            }
+
+            const sameDK = () => {
+                let debetTotal = 0
+                let creditTotal = 0
+                for (let i = 0; i < debet.length; i++) {
+                    const debetStrings = debet[i].value.split(',')
+                    const creditStrings = credit[i].value.split(',')
+
+                    let debetTemp = ''
+                    let creditTemp = ''
+                    debetStrings.forEach(debetString => debetTemp += debetString)
+                    creditStrings.forEach(creditString => creditTemp += creditString)
+
+                    debetTotal += +debetTemp
+                    creditTotal += +creditTemp
+                }
+
+                document.getElementById('debetTotal').innerText = debetTotal
+                document.getElementById('creditTotal').innerText = creditTotal
+                document.getElementById('total').removeAttribute('hidden')
+                currencyNumberDisplay()
+
+                if (debetTotal === creditTotal) {
+                    if (debetTotal !== 0) {
+                        activeProcessBtn()
+                    } else {
+                        journalInfo = 'belum ada nilai transaksi'
+                        document.getElementById('info').innerText = journalInfo
+                        disabledProcessBtn()
+                    }
+                } else {
+                    disabledProcessBtn()
+                    journalInfo = 'nilai transaksi tidak imbang'
+                    document.getElementById('info').innerText = journalInfo
+                }
+            }
+
+            const activeProcessBtn = () => {
+                journalInfo = 'nilai transaksi imbang'
+                document.getElementById('info').innerText = journalInfo
+                document.getElementById('process').removeAttribute('disabled')
+            }
+
+            const disabledProcessBtn = () => {
+                document.getElementById('process').setAttribute('disabled', '');
+            }
+
+            const addRowHandler = () => {
+                let journalInputTable = document.getElementById('dataInput');
+                const selectInputs = document.getElementsByClassName('form-select')
+                let selectInput = selectInputs.item(0).innerHTML
+
+                const tr = document.querySelectorAll('#dataInput tr');
+                let i = tr.length - 1;
+                let newTr = document.createElement('tr');
+                newTr.innerHTML = `<td>          
+                    <div class="mb-1 input-group-sm">
+                        <select class="form-select" id="account[${i}]" name="account[${i}]">
+                            ${selectInput}
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="mb-1 input-group-sm">
+                        <input type="number" class="form-control debet" name="debetAcc[${i}]" id="debetAcc[${i}]" oninput="inputHandler()" onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)" autocomplete="off" step="any">
+                    </div>          
+                </td>
+                <td>
+                    <div class="mb-1 input-group-sm">
+                        <input type="number" class="form-control credit" name="creditAcc[${i}]" id="creditAcc[${i}]" oninput="inputHandler()" onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)" autocomplete="off" step="any">
+                    </div>
+                </td>`;
+                journalInputTable.insertBefore(newTr, journalInputTable.children[i]);
+            }
+
+            const currencyNumberHandler = (e) => {
+                let dataNumber = Number(e.value)
+
+                // pikirkan cara membuat desimal menjadi 2 angka di belakang koma
+                let decimal = 0
+                let decDetect = dataNumber.toString().split('.')
+                if (decDetect.length === 2) {
+                    decimal = decDetect[1]
+                    dataNumber = Number(decDetect[0])
+                }
+
+                let reverse = dataNumber.toString().split('').reverse().join('');
+                let ribuan = reverse.match(/\d{1,3}/g);
+                ribuan = ribuan.join(',').split('').reverse().join('');
+
+                e.setAttribute('type', 'text')
+
+                ribuan == 0 ?
+                    e.value = '' :
+                    decimal === 0 ?
+                        e.value = ribuan :
+                        e.value = `${ribuan}.${decimal}`
+            }
+
+            const normalNumberHandler = (e) => {
+                const dataString = e.value
+                const results = dataString.split(',')
+                let temp = ''
+                results.forEach(result => temp += result)
+                temp = +temp
+                temp == 0 ?
+                    e.value = '' :
+                    e.value = temp
+                e.setAttribute('type', 'number')
+            }
+
+            const normalNumberAll = () => {
+                for (let i = 0; i < debet.length; i++) {
+                    const debetString = document.getElementById(`debetAcc[${i}]`).value
+                    const debetResults = debetString.split(',')
+                    let debetTemp = 0
+                    debetResults.forEach(debetResult => debetTemp += debetResult)
+                    debetTemp = +debetTemp
+                    document.getElementById(`debetAcc[${i}]`).setAttribute('type', 'number')
+                    if (debetTemp > 0) {
+                        document.getElementById(`debetAcc[${i}]`).value = debetTemp
+                    } else {
+                        document.getElementById(`debetAcc[${i}]`).value = '0.00'
+                    }
+
+                    const creditString = document.getElementById(`creditAcc[${i}]`).value
+                    const creditResults = creditString.split(',')
+                    let creditTemp = 0
+                    creditResults.forEach(creditResult => creditTemp += creditResult)
+                    creditTemp = +creditTemp
+                    document.getElementById(`creditAcc[${i}]`).setAttribute('type', 'number')
+                    if (creditTemp > 0) {
+                        document.getElementById(`creditAcc[${i}]`).value = creditTemp
+                    } else {
+                        document.getElementById(`creditAcc[${i}]`).value = '0.00'
+                    }
+                }
+            }
+
+
+            // halaman detail transaksi jurnal umum
+            const currencyNumberDisplay = () => {
+                const currency = document.getElementsByClassName('currency')
+                for (let i = 0; i < currency.length; i++) {
+                    let dataNumber = Number(currency.item(i).innerText)
+
+                    // pikirkan cara membuat desimal menjadi 2 angka di belakang koma
+                    let decimal = 0
+                    let decDetect = dataNumber.toString().split('.')
+                    if (decDetect.length === 2) {
+                        decimal = decDetect[1]
+                        dataNumber = Number(decDetect[0])
+                    }
+
+                    let reverse = dataNumber.toString().split('').reverse().join('');
+                    let ribuan = reverse.match(/\d{1,3}/g);
+                    ribuan = ribuan.join(',').split('').reverse().join('');
+                    ribuan == 0 ?
+                        currency.item(i).innerText = '' :
+                        decimal === 0 ?
+                            currency.item(i).innerText = `${ribuan}` :
+                            currency.item(i).innerText = `${ribuan}.${decimal}`
+                }
+            }
+            currencyNumberDisplay()
+
+            const btnWarningHandler = (e) => {
+                e.classList.remove('btn-secondary')
+                e.classList.add('btn-warning')
+                e.classList.add('fw-bold')
+            }
+
+            const btnSecondaryHandler = (e) => {
+                e.classList.remove('btn-warning')
+                e.classList.remove('fw-bold')
+                e.classList.add('btn-secondary')
+            }
+
+
+            // halaman add transaksi jurnal penerimaan
+            const accValue = document.getElementsByClassName('acc-value')
+
+            const accRequired2 = () => {
+                for (let i = 0; i < accValue.length; i++) {
+                    let temp = ''
+                    const accValueStrings = accValue[i].value.split(',')
+                    accValueStrings.forEach(accValueString => temp += accValueString);
+
+                    + temp > 0 ?
+                        document.getElementById(`account[${i}]`).setAttribute('required', '') :
+                        document.getElementById(`account[${i}]`).removeAttribute('required');
+                }
+                btnProcess()
+            }
+
+            const btnProcess = () => {
+                let temp = ''
+                for (let a = 0; a < accValue.length; a++) {
+                    const accValueStrings = accValue[a].value.split(',')
+                    accValueStrings.forEach(accValueString => temp += accValueString);
+                }
+                + temp > 0 ?
+                    document.getElementById('process').removeAttribute('disabled') :
+                    document.getElementById('process').setAttribute('disabled', '')
+            }
+
+            const normalNumberAll2 = () => {
+                for (let i = 0; i < accValue.length; i++) {
+                    const stringValues = document.getElementById(`creditAcc[${i}]`).value
+                    const results = stringValues.split(',')
+
+                    let temp = ''
+                    results.forEach(result => temp += result)
+
+                    document.getElementById(`creditAcc[${i}]`).setAttribute('type', 'number')
+                    document.getElementById(`creditAcc[${i}]`).value = +temp
+                }
+            }
+
+            const addRowHandler2 = () => {
+                let selectInput = document.getElementsByClassName('form-select').item(1).innerHTML
+                let journalInputTable = document.getElementById('dataInput');
+                const tr = document.querySelectorAll('#dataInput tr');
+                let i = tr.length;
+                let newTr = document.createElement('tr');
+                newTr.innerHTML = `<td>          
+                    <div class="mb-1 input-group-sm">
+                        <select class="form-select" id="account[${i}]" name="account[${i}]">
+                            ${selectInput}
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="mb-1 input-group-sm">
+                        <input type="text" class="form-control" name="information[${i}]" id="information[${i}]">
+                    </div>          
+                </td>
+                <td>
+                    <div class="mb-1 input-group-sm">
+                        <input type="number" class="form-control text-end acc-value" name="creditAcc[${i}]" id="creditAcc[${i}]" oninput="accRequired2()" onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)" autocomplete="off" step="any" style="padding-right: 15px;">
+                    </div>
+                </td>`;
+                journalInputTable.appendChild(newTr);
+            }
+
+            // halaman add transaksi jurnal pengeluaran
+            const normalNumberAll3 = () => {
+                for (let i = 0; i < accValue.length; i++) {
+                    const stringValues = document.getElementById(`debetAcc[${i}]`).value
+                    const results = stringValues.split(',')
+
+                    let temp = ''
+                    results.forEach(result => temp += result)
+
+                    document.getElementById(`debetAcc[${i}]`).setAttribute('type', 'number')
+                    document.getElementById(`debetAcc[${i}]`).value = +temp
+                }
+            }
+
+            const addRowHandler3 = () => {
+                let selectInput = document.getElementsByClassName('form-select').item(1).innerHTML
+                let journalInputTable = document.getElementById('dataInput');
+                const tr = document.querySelectorAll('#dataInput tr');
+                let i = tr.length;
+                let newTr = document.createElement('tr');
+                newTr.innerHTML = `<td>          
+                    <div class="mb-1 input-group-sm">
+                        <select class="form-select" id="account[${i}]" name="account[${i}]">
+                            ${selectInput}
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="mb-1 input-group-sm">
+                        <input type="text" class="form-control" name="information[${i}]" id="information[${i}]">
+                    </div>          
+                </td>
+                <td>
+                    <div class="mb-1 input-group-sm">
+                        <input type="number" class="form-control text-end acc-value" name="debetAcc[${i}]" id="debetAcc[${i}]" oninput="accRequired2()" onfocus="normalNumberHandler(this)" onblur="currencyNumberHandler(this)" autocomplete="off" step="any" style="padding-right: 15px;">
+                    </div>
+                </td>`;
+                journalInputTable.appendChild(newTr);
+            }
+
+
+        </script>
+</body>
+
+</html>

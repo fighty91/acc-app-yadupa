@@ -1,0 +1,69 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Ubah Akun</h2>
+
+            <% if (typeof errors !='undefined' ) { %>
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        <% errors.forEach(error=> { %>
+                            <li>
+                                <%= error.msg %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+                <% } %>
+
+                    <% const {_id, accChildName, accChildCode, accChildBalance,
+                        oldAccChildName,oldAccChildCode}=childAcc %>
+                        <form method="post" action="/child-account?_method=PUT">
+                            <input type="hidden" name="_id" value="<%= _id %>">
+                            <input type="hidden" class="form-control" id="oldAccChildName" name="oldAccChildName"
+                                value="<%= oldAccChildName || accChildName %>">
+                            <input type="hidden" class="form-control" id="oldAccChildCode" name="oldAccChildCode"
+                                value="<%= oldAccChildCode || accChildCode %>">
+                            <div class="mb-3">
+                                <label for="accChildName" class="form-label">Nama Akun:</label>
+                                <input type="text" class="form-control" id="accChildName" name="accChildName" required
+                                    autofocus value="<%= accChildName %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="parentAcc" class="form-label">Akun Induk:</label>
+                                <select class="form-select" id="parentAcc" name="parentAcc" required>
+                                    <% parentAccs.forEach(parentAcc=> { %>
+                                        <% if (parentAcc._id==childAcc.parentAcc) { %>
+                                            <option selected value="<%= parentAcc._id %>">
+                                                <%= parentAcc.accName %>
+                                            </option>
+                                            <% }else{ %>
+                                                <option value="<%= parentAcc._id %>">
+                                                    <%= parentAcc.accName %>
+                                                </option>
+                                                <% } %>
+                                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="accChildCode" class="form-label">No Akun:</label>
+                                <input type="text" class="form-control" id="accChildCode" name="accChildCode" required
+                                    value="<%= accChildCode %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="accChildBalance" class="form-label">Saldo Normal:</label>
+                                <select class="form-select" id="accChildBalance" name="accChildBalance" required>
+                                    <% if (accChildBalance==='d' ) { %>
+                                        <option selected value="d">Debet</option>
+                                        <option value="k">Kredit</option>
+                                        <% } else { %>
+                                            <option value="d">Debet</option>
+                                            <option selected value="k">Kredit</option>
+                                            <% } %>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Perbaharui Data</button>
+                        </form>
+        </div>
+    </div>
+</div>

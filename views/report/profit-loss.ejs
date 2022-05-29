@@ -1,0 +1,470 @@
+
+<div class="row mb-2 d-flex justify-content-center">
+    <div class="col col-md-10 col-xl-8 mb-3 mt-4">
+        <div class="mb-3">
+            <h2 class="mb-0">
+                Laporan Penghasilan Komprehensif
+            </h2>
+            <div>
+                Periode <%= date.split('-').reverse().join('-') %> 
+            </div>
+        </div>
+        <div class="d-flex">
+            <div>
+                <form method="post" action="/report/profit-loss">
+                    <div class="d-flex">
+                        <div class="me-1 input-group-sm">
+                            <select class="form-select" name="year" required>
+                                <option value="" class="text-center">Tahun</option>
+                                <% years.forEach(year => { %>
+                                    <option value="<%= year %>" class="text-center"><%= year %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div >
+                            <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="ms-3">
+                <form method="post" action="/report/profit-loss/periode">
+                    <div class="d-flex">
+                        <div class="me-1 input-group-sm">
+                            <select class="form-select" name="yearMonth" required>
+                                <option value="" class="text-center">Bulan</option>
+                                
+                                <% yearMonths.forEach(yearMonth => { %>
+                                    <% const yearMonthSubmit = yearMonth.split('-') %> 
+                                    <% const yearSubmit = yearMonthSubmit[0] %> 
+                                    <% const monthSubmit = yearMonthSubmit[1] %>
+                                    <% 
+                                    let month = ''
+                                    if (monthSubmit == 1) { 
+                                        month = 'Jan'
+                                    } else if (monthSubmit == 2 ){
+                                        month = 'Feb'
+                                    } else if (monthSubmit == 3 ){
+                                        month = 'Mar'
+                                    } else if (monthSubmit == 4 ){
+                                        month = 'Apr'
+                                    } else if (monthSubmit == 5 ){
+                                        month = 'Mei'
+                                    } else if (monthSubmit == 6 ){
+                                        month = 'Jun'
+                                    } else if (monthSubmit == 7 ){
+                                        month = 'Jul'
+                                    } else if (monthSubmit == 8 ){
+                                        month = 'Agu'
+                                    } else if (monthSubmit == 9 ){
+                                        month = 'Sep'
+                                    } else if (monthSubmit == 10 ){
+                                        month = 'Okt'
+                                    } else if (monthSubmit == 11 ){
+                                        month = 'Nov'
+                                    } else if (monthSubmit == 12 ){
+                                        month = 'Des'
+                                    }
+                                    %>
+                                    <option value="<%= yearMonth %>" class="text-center">
+                                        <span class="fw-bold" style="padding-right:30px;">
+                                            <%= `${month} ${yearSubmit}` %>
+
+                                        </span>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div >
+                            <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col col-md-10 col-xl-8">
+        <hr>
+        <table class="table table-hover table-borderless table-sm">          
+            <tbody>
+                <tr>
+                    <th colspan="2">
+                        TANPA PEMBATASAN DARI PEMBERI SUMBER DAYA
+                    </th>
+                    <th style="width: 170px;">
+                    </th>
+                </tr>
+                
+                <% const accPTB = accs.filter(acc=> acc.parent=='627888639e9554431ce8c575') %> 
+                <% let accPTBTotal = 0 %> 
+                <% if (accPTB.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Pendapatan
+                        </th>
+                        <th></th>
+                    </tr>
+                    <% accPTB.forEach(acc => { %>                   
+                        <% const {name, code, debet, credit, parent, id} = acc %>
+                        <tr>
+                            <td style="width: 74px;">
+                                <%= code %> 
+                            </td>
+                            <td>
+                                <%= name %> 
+                            </td>
+                            <td class="text-end">
+                                <% const value = credit - debet %>
+                                <% accPTBTotal += value %>
+                                <% if (value<0) { %>
+                                    (<span class="currency"><%= value %></span>)
+                                <% } else { %>
+                                    <span class="currency"><%= value %></span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Pendapatan
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">-</th>
+                    </tr>
+                <% } %>
+                
+                
+                <% if (accPTB.length> 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Total Pendapatan
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;"> 
+                            <% if (accPTBTotal<0) { %>
+                                (<span class="currency">
+                                    <%= accPTBTotal %>
+                                </span>)
+                            <% } else { %>
+                                <span class="currency">
+                                    <%= accPTBTotal %>
+                                </span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+                
+                <% const accBTB=accs.filter(acc=> acc.parent=='627888af9e9554431ce8c579') %>
+                <% let accBTBTotal=0 %>
+                <% if (accBTB.length> 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Beban
+                        </th>
+                        <th></th>
+                    </tr>
+                    <% accBTB.forEach(acc=> { %>
+                        <% const {name, code, debet, credit, parent, id}=acc %>
+                        <tr>
+                            <td>
+                                <%= code %>
+                            </td>
+                            <td>
+                                <%= name %>
+                            </td>
+                            <td class="text-end">
+                                <% const value=credit - debet %>
+                                <% accBTBTotal +=value %>
+                                <% if (value<0) { %>
+                                    (<span class="currency">
+                                        <%= value %>
+                                    </span>)
+                                <% } else { %>
+                                    <span class="currency">
+                                        <%= value %>
+                                    </span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Beban
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">-</th>
+                    </tr>
+                <% } %>
+
+
+                <% if (accBTB.length> 0) { %>
+                    <tr>                  
+                        <th colspan="2" class="fst-italic">
+                            Total Beban
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            <% if (accBTBTotal<0) { %>
+                                (<span class="currency">
+                                    <%= accBTBTotal %>
+                                </span>)
+                            <% } else { %>
+                                <span class="currency">
+                                    <%= accBTBTotal %>
+                                </span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+                    
+                <% if (accBTB.length> 0 || accPTB.length> 0) { %>
+                    <tr>                  
+                        <th colspan="2">
+                            Surplus (Defisit)
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            <% let surDef = accPTBTotal + accBTBTotal %> 
+                            <% if (surDef < 0) { %>
+                                (<span class="currency">
+                                    <%= surDef %>
+                                </span>)
+                            <% } else { %>
+                                <span class="currency">
+                                    <%= surDef %>
+                                </span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        DENGAN PEMBATASAN DARI PEMBERI SUMBER DAYA
+                    </th>
+                    <th></th>
+                </tr>
+                
+                <% const accPDB = accs.filter(acc=> acc.parent=='627888809e9554431ce8c576') %> 
+                <% let accPDBTotal = 0 %> 
+                <% if (accPDB.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Pendapatan
+                        </th>
+                        <th></th>
+                    </tr>
+                    <% accPDB.forEach(acc => { %>                   
+                        <% const {name, code, debet, credit, parent, id} = acc %>
+                        <tr>
+                            <td>
+                                <%= code %> 
+                            </td>
+                            <td>
+                                <%= name %> 
+                            </td>
+                            <td class="text-end">
+                                <% const value = credit - debet %>
+                                <% accPDBTotal += value %>
+                                <% if (value<0) { %>
+                                    (<span class="currency"><%= value %></span>)
+                                <% } else { %>
+                                    <span class="currency"><%= value %></span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Pendapatan
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">-</th>
+                    </tr>
+                <% } %>
+                
+                
+                <% if (accPDB.length> 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Total Pendapatan
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;"> 
+                            <% if (accPDBTotal<0) { %>
+                                (<span class="currency">
+                                    <%= accPDBTotal %>
+                                </span>)
+                            <% } else { %>
+                                <span class="currency">
+                                    <%= accPDBTotal %>
+                                </span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+                
+                <% const accBDB=accs.filter(acc=> acc.parent=='627888e09e9554431ce8c57c') %>
+                <% let accBDBTotal=0 %>
+                <% if (accBDB.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Beban
+                        </th>
+                        <th></th>
+                    </tr>
+                <% accBDB.forEach(acc=> { %>
+                        <% const {name, code, debet, credit, parent, id}=acc %>
+                            <tr>
+                                <td>
+                                    <%= code %>
+                                </td>
+                                <td>
+                                    <%= name %>
+                                </td>
+                                <td class="text-end">
+                                    <% const value=credit - debet %>
+                                    <% accBDBTotal +=value %>
+                                    <% if (value < 0) { %>
+                                        (<span class="currency">
+                                            <%= value %>
+                                        </span>)
+                                    <% } else { %>
+                                        <span class="currency">
+                                            <%= value %>
+                                        </span>
+                                    <% } %>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <th colspan="2" class="fst-italic">
+                                Beban
+                            </th>
+                            <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">-</th>
+                        </tr>
+                    <% } %>
+
+
+                <% if (accBDB.length> 0) { %>
+                    <tr>                  
+                        <th colspan="2" class="fst-italic">
+                            Total Beban
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            <% if (accBDBTotal<0) { %>
+                                (<span class="currency">
+                                    <%= accBDBTotal %>
+                                </span>)
+                            <% } else { %>
+                                <span class="currency">
+                                    <%= accBDBTotal %>
+                                </span>
+                            <% } %>
+                        </th>
+                    </tr>
+                    <% } %>
+
+                    <% if (accBDB.length> 0 || accPDB.length> 0) { %>
+                    <tr>                  
+                        <th colspan="2">
+                            Surplus (Defisit)
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            <% let surDef = accPDBTotal + accBDBTotal %> 
+                            <% if (surDef < 0) { %>
+                                (<span class="currency">
+                                    <%= surDef %>
+                                </span>)
+                            <% } else { %>
+                                <span class="currency">
+                                    <%= surDef %>
+                                </span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2">
+                        PENGHASILAN KOMPREHENSIF LAIN
+                    </th>
+                    <th></th>
+                </tr>
+                <% const otherRevenue = accs.filter(acc=> acc.parent=='627888f59e9554431ce8c57e') %> 
+                <% let otherRevenueTotal = 0 %> 
+                <% if (otherRevenue.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Pendapatan dan Beban Lainnya
+                        </th>
+                        <th></th>
+                    </tr>
+                    <% otherRevenue.forEach(acc => { %>                   
+                        <% const {name, code, debet, credit, parent, id} = acc %>
+                        <tr>
+                            <td>
+                                <%= code %> 
+                            </td>
+                            <td>
+                                <%= name %> 
+                            </td>
+                            <td class="text-end">
+                                <% const value = credit - debet %>
+                                <% otherRevenueTotal += value %>
+                                <% if (value<0) { %>
+                                    (<span class="currency"><%= value %></span>)
+                                <% } else { %>
+                                    <span class="currency"><%= value %></span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Pendapatan dan Beban Lainnya
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            -
+                        </th>
+                    </tr>
+                <% } %>
+                
+                <% if (otherRevenue.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Total Pendapatan dan Beban Komprehensif Lain
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;"> 
+                            <% if (otherRevenueTotal<0) { %>
+                                (<span class="currency">
+                                    <%= otherRevenueTotal %>
+                                </span>)
+                            <% } else { %>
+                                <span class="currency">
+                                    <%= otherRevenueTotal %>
+                                </span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,391 @@
+<% childAccs.sort((a,b)=>(a.accChildCode - b.accChildCode));
+    // sortir jurnal per tanggal
+    parentAccs.sort((a,b)=>(a.accCode - b.accCode));
+    journals.sort((a,b)=>(a.date - b.date)) %>
+    <%let debetTotalTB=0; let creditTotalTB=0; let debetTotalAJ=0; let creditTotalAJ=0; let debetTotalNAJ=0; let
+        creditTotalNAJ=0; let debetTotalPL=0; let creditTotalPL=0; let debetTotalNr=0; let creditTotalNr=0 %>
+
+        <div class="row mb-3">
+            <div class="col d-flex justify-content-between">
+                <h2 class="mb-3">
+                    Neraca Lajur
+                </h2>
+                <div class="col-md-3">
+                    <div class="mb-1 input-group-sm d-flex">
+                        <input type="date" class="form-control"> &nbsp;
+                        <button class="btn btn-sm btn-secondary">Go</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+
+                <table class="table table-hover table-bordered table-sm small">
+                    <thead class="small">
+                        <tr class="table-secondary">
+                            <th scope="col" class="text-center" rowspan="2" width="55px">
+                                <div>No.</div>
+                                <div>Akun</div>
+                            </th>
+                            <th scope="col" class="text-center" style="width: 300px;border-right: 1px solid grey"
+                                rowspan="2">
+                                <div style="margin-top: -30px;">
+                                    Uraian
+                                </div>
+                            </th>
+                            <th scope="col" class="text-center" colspan="2" style="border-right: 1px solid grey">
+                                Neraca Saldo
+                            </th>
+                            <th scope="col" class="text-center" colspan="2" style="border-right: 1px solid grey">
+                                Penyesuaian
+                            </th>
+                            <th scope="col" class="text-center" colspan="2" style="border-right: 1px solid grey">
+                                Neraca Penyesuaian
+                            </th>
+                            <th scope="col" class="text-center" colspan="2" style="border-right: 1px solid grey">
+                                Laba Rugi
+                            </th>
+                            <th scope="col" class="text-center" colspan="2">
+                                Neraca
+                            </th>
+                        </tr>
+                        <tr class="table-secondary">
+                            <th scope="col" class="text-center" style="width: 100px;">
+                                Debet
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px;border-right: 1px solid grey">
+                                Kredit
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px;">
+                                Debet
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px; border-right: 1px solid grey">
+                                Kredit
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px;">
+                                Debet
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px; border-right: 1px solid grey">
+                                Kredit
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px;">
+                                Debet
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px; border-right: 1px solid grey">
+                                Kredit
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px;">
+                                Debet
+                            </th>
+                            <th scope="col" class="text-center" style="width: 100px;">
+                                Kredit
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="small">
+                        <tr class="small">
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td style="border-right: 1px solid grey"></td>
+                            <td></td>
+                            <td style="border-right: 1px solid grey"></td>
+                            <td></td>
+                            <td style="border-right: 1px solid grey"></td>
+                            <td></td>
+                            <td style="border-right: 1px solid grey"></td>
+                            <td></td>
+                            <td style="border-right: 1px solid grey"></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <% if (childAccs.length===0) { %>
+                            <p>Data masih kosong</p>
+                            <% } %>
+
+
+
+                                <% parentAccs.forEach(parentAcc=> { let fState=''%>
+                                    <% accTypes.forEach(accType=>{
+                                        if(accType._id == parentAcc.accType) {fState = accType.fState}
+                                        }) %>
+
+
+
+                                        <% let accounts=childAccs.filter(acc=> acc.parentAcc==parentAcc._id) %>
+                                            <% if (accounts.length> 0) { let parentInd=0%>
+
+
+                                                <% accounts.forEach(childAcc=> {
+                                                    journals.forEach(journal=> {
+                                                    const accLists=journal.journalTrans.find(trans=>
+                                                    trans.accChildId==childAcc._id);
+                                                    if (accLists) {parentInd++}
+                                                    })
+                                                    }) %>
+
+                                                    <% if(parentInd> 0) { %>
+                                                        <tr class="fw-bold">
+                                                            <td colspan="2" style="border-right: 1px solid grey">
+                                                                <%= parentAcc.accName %>
+                                                            </td>
+                                                            <td></td>
+                                                            <td style="border-right: 1px solid grey"></td>
+                                                            <td></td>
+                                                            <td style="border-right: 1px solid grey"></td>
+                                                            <td></td>
+                                                            <td style="border-right: 1px solid grey"></td>
+                                                            <td></td>
+                                                            <td style="border-right: 1px solid grey"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+
+
+
+                                                        <% accounts.forEach(childAcc=> {
+                                                            const
+                                                            {accChildName,accChildCode,accChildBalance}=childAcc;
+                                                            let childAccInd=0 %>
+
+                                                            <% journals.forEach(journal=> {
+                                                                const accLists=journal.journalTrans.find(trans=>
+                                                                trans.accChildId==childAcc._id);
+                                                                if (accLists) {childAccInd++}
+                                                                }); let accValueTB=0; let accValueAJ=0 %>
+
+                                                                <% if (childAccInd>0) { %>
+                                                                    <tr>
+                                                                        <td class="text-center">
+                                                                            <%= accChildCode %>
+                                                                        </td>
+                                                                        <td style="border-right: 1px solid grey">
+                                                                            <a href="" style="text-decoration: none;"
+                                                                                class="text-dark">
+                                                                                <%= accChildName %>
+                                                                            </a>
+                                                                        </td>
+
+                                                                        <td class="text-end currency">
+                                                                            <% journals.forEach(journal=> {
+                                                                                const {ref} = journal;
+                                                                                const
+                                                                                accLists=journal.journalTrans.find(trans=>{
+                                                                                if(trans.accChildId ==
+                                                                                childAcc._id){
+                                                                                if(ref !== 'aj' && ref !== 'cj'){
+                                                                                return trans
+                                                                                }
+                                                                                }
+                                                                                });%>
+                                                                                <% if(accLists){
+                                                                                    const{debet,credit}=accLists;
+                                                                                    accValueTB+=debet;accValueTB-=credit
+                                                                                    } }) %>
+
+
+                                                                                    <% if (accValueTB> 0)
+                                                                                        {debetTotalTB+=accValueTB;%>
+                                                                                        <%=accValueTB%>
+                                                                                            <%}%>
+                                                                        </td>
+                                                                        <td class="text-end currency"
+                                                                            style="border-right: 1px solid grey">
+                                                                            <% if (accValueTB< 0) {
+                                                                                creditTotalTB+=accValueTB;%>
+                                                                                <%=-accValueTB%>
+                                                                                    <%}%>
+                                                                        </td>
+                                                                        <td class="text-end currency">
+                                                                            <% journals.forEach(journal=> {
+                                                                                const {ref} = journal;
+                                                                                const
+                                                                                accLists=journal.journalTrans.find(trans=>{
+                                                                                if(trans.accChildId ==
+                                                                                childAcc._id){
+                                                                                if(ref == 'aj'){return trans}
+                                                                                }
+                                                                                });%>
+                                                                                <% if(accLists){
+                                                                                    const{debet,credit}=accLists;
+                                                                                    accValueAJ+=debet;accValueAJ-=credit
+                                                                                    } }) %>
+
+
+                                                                                    <% if (accValueAJ> 0)
+                                                                                        {debetTotalAJ+=accValueAJ;%>
+                                                                                        <%=accValueAJ%>
+                                                                                            <%}%>
+                                                                        </td>
+                                                                        <td class="text-end currency"
+                                                                            style="border-right: 1px solid grey">
+                                                                            <% if (accValueAJ< 0) {
+                                                                                creditTotalAJ+=accValueAJ;%>
+                                                                                <%=-accValueAJ%>
+                                                                                    <%}%>
+                                                                        </td>
+                                                                        <td class="text-end currency">
+                                                                            <% const accValueNAJ=accValueTB+accValueAJ%>
+                                                                                <% if (accValueNAJ> 0)
+                                                                                    {debetTotalNAJ+=accValueNAJ;%>
+                                                                                    <%=accValueNAJ%>
+                                                                                        <%}%>
+                                                                        </td>
+                                                                        <td class="text-end currency"
+                                                                            style="border-right: 1px solid grey">
+                                                                            <% if (accValueNAJ< 0) {
+                                                                                creditTotalNAJ+=accValueNAJ;%>
+                                                                                <%=-accValueNAJ%>
+                                                                                    <%}%>
+                                                                        </td>
+                                                                        <td class="text-end currency">
+                                                                            <% if(fState==='pl' ){ %>
+                                                                                <% if (accValueNAJ> 0)
+                                                                                    {debetTotalPL+=accValueNAJ;%>
+                                                                                    <%=accValueNAJ%>
+                                                                                        <%}%>
+                                                                                            <%}%>
+
+                                                                        </td>
+                                                                        <td class="text-end currency"
+                                                                            style="border-right: 1px solid grey">
+                                                                            <% if(fState==='pl' ){ %>
+                                                                                <% if (accValueNAJ< 0) {
+                                                                                    creditTotalPL+=accValueNAJ;%>
+                                                                                    <%=-accValueNAJ%>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                        </td>
+                                                                        <td class="text-end currency">
+                                                                            <% if(fState==='nr' ){ %>
+                                                                                <% if (accValueNAJ> 0)
+                                                                                    {debetTotalNr+=accValueNAJ;%>
+                                                                                    <%=accValueNAJ%>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                        </td>
+                                                                        <td class="text-end currency">
+                                                                            <% if(fState==='nr' ){ %>
+                                                                                <% if (accValueNAJ< 0) {
+                                                                                    creditTotalNr+=accValueNAJ;%>
+                                                                                    <%=-accValueNAJ%>
+                                                                                        <%}%>
+                                                                                            <%}%>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <%}%>
+                                                                        <% }) %>
+                                                                            <%}%>
+                                                                                <% } %>
+                                                                                    <!-- tutup parent foreach -->
+                                                                                    <% }) %>
+                    </tbody>
+                    <tfoot class="small">
+                        <tr class="table-secondary">
+                            <td colspan="2" style="border-right: 1px solid grey">
+                                Total
+                            </td>
+                            <td class="currency text-end">
+                                <%=debetTotalTB%>
+                            </td>
+                            <td class="currency text-end" style="border-right: 1px solid grey">
+                                <%=-creditTotalTB%>
+                            </td>
+                            <td class="currency text-end">
+                                <%=debetTotalAJ%>
+                            </td>
+                            <td class="currency text-end" style="border-right: 1px solid grey">
+                                <%=-creditTotalAJ%>
+                            </td>
+                            <td class="currency text-end">
+                                <%=debetTotalNAJ%>
+                            </td>
+                            <td class="currency text-end" style="border-right: 1px solid grey">
+                                <%=-creditTotalNAJ%>
+                            </td>
+                            <td class="currency text-end">
+                                <%=debetTotalPL%>
+                            </td>
+                            <td class="currency text-end" style="border-right: 1px solid grey">
+                                <%=-creditTotalPL%>
+                            </td>
+                            <td class="currency text-end">
+                                <%=debetTotalNr%>
+                            </td>
+                            <td class="currency text-end">
+                                <%=-creditTotalNr%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="border-right: 1px solid grey">
+                                <% const profitLoss=debetTotalPL + creditTotalPL %>
+                                    <% let profit=0; let loss=0 %>
+                                        <% if(profitLoss<0) {%>
+                                            Laba Bersih
+                                            <% profit=profitLoss; loss=0 %>
+                                                <% } else { %>
+                                                    Rugi Bersih
+                                                    <% profit=0; loss=profitLoss %>
+                                                        <% } %>
+                            </td>
+                            <td class="currency text-end">
+                            </td>
+                            <td class="currency text-end" style="border-right: 1px solid grey">
+                            </td>
+                            <td class="currency text-end">
+                            </td>
+                            <td class="currency text-end" style="border-right: 1px solid grey">
+                            </td>
+                            <td class="currency text-end">
+                            </td>
+                            <td class="currency text-end" style="border-right: 1px solid grey">
+                            </td>
+                            <td class="currency text-end">
+                                <%=-profit%>
+                            </td>
+                            <td class="currency text-end" style="border-right: 1px solid grey">
+                                <%=loss%>
+                            </td>
+                            <td class="currency text-end">
+                                <%=loss%>
+                            </td>
+                            <td class="currency text-end">
+                                <%=-profit%>
+                            </td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <th colspan="2" style="border-right: 1px solid grey">
+                                Total Akhir
+                            </th>
+                            <th class="currency text-end">
+                            </th>
+                            <th class="currency text-end" style="border-right: 1px solid grey">
+                            </th>
+                            <th class="currency text-end">
+                            </th>
+                            <th class="currency text-end" style="border-right: 1px solid grey">
+                            </th>
+                            <th class="currency text-end">
+                            </th>
+                            <th class="currency text-end" style="border-right: 1px solid grey">
+                            </th>
+                            <th class="currency text-end">
+                                <%=-profit+debetTotalPL%>
+                            </th>
+                            <th class="currency text-end" style="border-right: 1px solid grey">
+                                <%=-creditTotalPL+loss%>
+                            </th>
+                            <th class="currency text-end">
+                                <%=debetTotalNr+loss%>
+                            </th>
+                            <th class="currency text-end">
+                                <%=-profit-creditTotalNr%>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>

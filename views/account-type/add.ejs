@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Tambah Data Tipe Akun</h2>
+        <br><br>
+        <% if (typeof errors !='undefined' ) { %>
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    <% errors.forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <form method="post" action="/account-type">
+            <div class="mb-3">
+                <label for="typeName" class="form-label">Nama Tipe Akun:</label>
+                <input type="text" class="form-control" id="typeName" name="typeName" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="fState" class="form-label">Laporan:</label>
+                <select class="form-select" id="fState" name="fState" required>
+                    <option selected value="">
+                        -- Pilih Laporan --
+                    </option>
+                    <option value="nr">
+                        Neraca
+                    </option>
+                    <option value="pl">
+                        Laba Rugi
+                    </option>
+                </select>
+            </div>
+            <br><br>
+            <button type="submit" class="btn btn-secondary" onmouseover="btnWarningHandler(this)" onmouseout="btnSecondaryHandler(this)">
+                Tambah Data
+            </button>
+        </form>
+    </div>
+</div>

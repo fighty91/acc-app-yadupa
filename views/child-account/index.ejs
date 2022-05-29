@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col">
+        <h2 class="mb-3">
+            Daftar Akun
+        </h2>
+        <a href="/child-account/add" class="btn btn-secondary btn-sm mb-3" onmouseout="btnSecondaryHandler(this)" onmouseover="btnWarningHandler(this)">
+            Tambah Data
+        </a>
+
+        <% if (msg.length !==0) { %>
+            <div class="alert <%= typeAlert %> alert-dismissible fade show" role="alert">
+                <%= msg %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-secondary">
+                    <th scope="col" style="padding-left: 16px; min-width: 74px;">No</th>
+                    <th scope="col">Nama Akun</th>
+                    <th scope="col">Akun Induk</th>
+                    <th scope="col" class="text-center">Saldo Normal</th>
+                    <th scope="col" class="text-end" style="padding-right: 16px; min-width: 118px;">Action</th>
+                </tr>
+            </thead>
+            <tbody class="small">
+                <% childAccs.sort((a,b)=>(a.accChildCode - b.accChildCode));
+                if (childAccs.length===0) { %>
+                    <tr>
+                        <td colspan="6">data masih kosong</td>
+                    </tr>
+                <% } %>
+                <% childAccs.forEach((childAcc,i)=> { %>
+                    <% const { _id, accChildName, accChildCode, accChildBalance, parentAcc}=childAcc %>
+                    <tr>
+                        <td class="fw-light" style="padding-left: 16px;">
+                            <%= accChildCode %>
+                        </td>
+                        <td>
+                            <%= accChildName %>
+                        </td>
+                        <td class="fw-light">
+                            <% const parentAccDisplay=parentAccs.find(parent=> parent._id == parentAcc) %>
+                            <i>
+                                <%= `(${parentAccDisplay.accName})` %>
+                            </i>
+                        </td>
+                        <td class="text-center">
+                            <% if (accChildBalance==='d' ) { %>
+                                Debet
+                            <% } else {%>
+                                Kredit
+                            <% } %>
+                        </td>
+                        <td class="text-end" style="padding-right: 16px;">
+                            <form action="/child-account?_method=DELETE" method="POST" class="d-inline">
+                                <input type="hidden" name="_id" value="<%= _id %>">
+                                <button type="submit" class="btn btn-danger badge" onclick="return confirm('yakin ingin menghapus data?')">
+                                    Hapus
+                                </button>
+                            </form>
+                            <a href="/child-account/edit/<%= accChildName %>" class="btn btn-success badge">
+                                Ubah
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

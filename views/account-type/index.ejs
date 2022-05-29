@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-lg-8">
+        <h2 class="mb-3">
+            Daftar Tipe Akun
+        </h2>
+        <a href="/account-type/add" class="btn btn-secondary btn-sm mb-3" onmouseover="btnWarningHandler(this)" onmouseout="btnSecondaryHandler(this)">
+            Tambah Data
+        </a>
+        <% if (msg.length !==0) { %>
+            <div class="alert <%=typeAlert%> alert-dismissible fade show" role="alert">
+                <%= msg %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-secondary">
+                    <th scope="col">#</th>
+                    <th scope="col">Nama Tipe Akun</th>
+                    <th scope="col" class="text-center">Laporan</th>
+                    <th scope="col" class="text-end" style="padding-right: 16px; min-width: 130px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (accTypes.length===0) { %>
+                    <tr>
+                        <td colspan="4">data masih kosong</td>
+                    </tr>
+                <% } %>
+                <% accTypes.forEach((accType,i)=> { %>
+                    <% const { _id,typeName, fState } = accType %>
+                    <tr>
+                        <th scope="row">
+                            <%=i+1%>
+                        </th>
+                        <td>
+                            <%= typeName %>
+                        </td>
+                        <td class="fst-italic fw-light text-center">
+                            <% if(fState==='nr' ) { %>
+                                (Neraca)
+                            <% } else { %>
+                                (Laba Rugi)
+                            <% } %>
+                        </td>
+                        <td class="text-end" style="padding-right: 16px;">
+                            <form action="/account-type?_method=DELETE" method="POST" class="d-inline">
+                                <input type="hidden" name="_id" value="<%= _id %>">
+                                <button type="submit" class="btn btn-secondary badge" onclick="return confirm('yakin ingin menghapus data?')">
+                                    Hapus
+                                </button>
+                            </form>
+                            <a href="/account-type/edit/<%= typeName %>" class="btn btn-success badge">
+                                Ubah
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>

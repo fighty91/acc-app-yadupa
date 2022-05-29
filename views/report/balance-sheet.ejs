@@ -1,0 +1,456 @@
+<% const {parentCurrentAsset, parentNonCurrentAsset, accShortLiabilities, accLongLiabilities, netAssetCode, netAssetRCode} = balanceSheet %>
+<% const arrMY = date.split('-'); const mountYearInput = `${arrMY[0]}-${arrMY[1]}` %>
+
+<div class="row mb-2 d-flex justify-content-center">
+    <div class="col col-md-10 col-xl-8 mb-3 mt-4">
+        <div class="mb-3">
+            <h2 class="mb-0">
+                Laporan Posisi Keuangan
+            </h2>
+            <div>
+                Periode <%= date.split('-').reverse().join('-') %> 
+            </div>
+        </div>
+        <div class="d-flex">
+            <div>
+                <form method="post" action="/report/balance-sheet/periode">
+                    <div class="d-flex">
+                        <div class="input-group-sm me-1">
+                            <input type="text" class="form-control" id="date1" onfocus="myDate1()" placeholder="-- Pilih Bulan --" style="width: 142px;">
+                            <input type="month" class="form-control" id="date2" name="date" style="width: 142px;" hidden value="<%= mountYearInput %>">
+                        </div>
+                        <div >
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick="myDate1()">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col col-md-10 col-xl-8">
+        <hr>
+        <table class="table table-hover table-borderless table-sm">          
+            <tbody>
+                <!-- Aset -->
+                <tr>
+                    <th colspan="2">
+                        ASET
+                    </th>
+                    <th  style="width: 170px;">
+                    </th>
+                </tr>
+
+                <!-- Aset lancar -->
+                <% if (parentCurrentAsset.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Aset Lancar
+                        </th>
+                        <th></th>
+                    </tr>
+                <% } else { %>
+                    <tr>
+                        <td colspan="2" class="fst-italic">
+                            Aset Lancar
+                        </td>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">-</th>
+                    </tr>
+                <% } %> 
+
+                <!-- Akun parent aset lancar -->
+                <% let totalCA=0 %>
+                <% parentCurrentAsset.forEach( p => { %>
+                    <tr>
+                        <td style="width: 78px;">
+                            <%= p.accCode %>
+                        </td>
+                        <td>
+                            <%= p.accName %>
+                        </td>
+                        <td class="text-end">
+                            <% if (p.value===0) { %>
+                                -
+                            <%} else if (p.value < 0) { %>
+                                (<span class="currency">
+                                    <%= p.value %>
+                                </span>)
+                            <% } else {%>
+                                <span class="currency">
+                                    <%= p.value %>
+                                </span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% totalCA += p.value %>
+                <% }) %>
+
+                <!-- Total aset lancar -->
+                <% if (parentCurrentAsset.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Total Aset Lancar
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            <% if (totalCA === 0) { %>
+                                -
+                            <% } else if (totalCA < 0) { %>
+                                (<span class="currency"><%= totalCA %></span>)
+                            <% } else { %>
+                                <span class="currency"><%= totalCA %></span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+                
+                <!-- Aset Tidak Lancar -->
+                <% if (parentNonCurrentAsset.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Aset Tidak Lancar
+                        </th>
+                        <th></th>
+                    </tr>
+                <% } else { %>
+                    <tr>
+                        <td colspan="2" class="fst-italic">
+                            Aset Tidak Lancar
+                        </td>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">-</th>
+                    </tr>
+                <% } %>
+                    
+                <!-- Akun parent aset tidak lancar -->
+                <% let totalNonCA=0 %>
+                <% parentNonCurrentAsset.forEach(p=> { %>
+                    <tr>
+                        <td>
+                            <%= p.accCode %>
+                        </td>
+                        <td>
+                            <%= p.accName %>
+                        </td>
+                        <td class="text-end">
+                            <% if (p.value===0) { %>
+                                -
+                            <%} else if (p.value < 0) { %>
+                                (<span class="currency">
+                                    <%= p.value %>
+                                </span>)
+                            <% } else {%>
+                                <span class="currency">
+                                    <%= p.value %>
+                                </span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% totalNonCA += p.value %>
+                <% }) %>
+
+                <!-- Total Aset Tidak Lancar -->
+                <% if (parentNonCurrentAsset.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Total Aset Tidak Lancar
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            <% if (totalNonCA === 0) { %>
+                                -
+                            <% } else if (totalNonCA < 0) { %>
+                                (<span class="currency"><%= totalNonCA %></span>)
+                            <% } else { %>
+                                <span class="currency"><%= totalNonCA %></span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+
+                <!-- spasi -->
+                <tr>
+                    <th colspan="3" class="p-0">&nbsp;</th>
+                </tr>
+                
+                <!-- Total Aset -->
+                <tr>
+                    <th colspan="2">
+                        TOTAL ASET
+                    </th>
+                    <% const totalAsset = totalCA + totalNonCA %> 
+                    <th class="text-end" style="border-bottom: 2px solid grey; border-top: 1px solid grey;">
+                        <% if (totalAsset === 0) { %>
+                            -
+                        <% } else if (totalAsset < 0) { %>
+                            (<span class="currency"><%= totalAsset %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= totalAsset %></span>
+                        <% } %>
+                    </th>
+                </tr>
+
+                <!-- spasi -->
+                <tr>
+                    <th colspan="3">&nbsp;</th>
+                </tr>
+                
+                <!-- Liabilitas -->
+                <tr>
+                    <th colspan="2">
+                        LIABILITAS
+                    </th>
+                    <th></th>
+                </tr>
+                
+                <!-- Liabilitas jangka pendek -->
+                <% if (accShortLiabilities.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Liabilitas Jangka Pendek
+                        </th>
+                        <th></th>
+                    </tr>
+                <% } else { %>
+                    <tr>
+                        <td colspan="2" class="fst-italic">
+                            Liabilitas Jangka Pendek
+                        </td>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">-</th>
+                    </tr>
+                <% } %>
+
+                <!-- Akun liabilitas jangka pendek -->
+                <% let totalShortLiabil = 0 %> 
+                <% accShortLiabilities.forEach(a => { %>
+                    <tr>
+                        <td>
+                            <%= a.accChildCode %> 
+                        </td>
+                        <td>
+                            <%= a.accChildName %> 
+                        </td>
+                        <td class="text-end">
+                            <% if (a.value===0) { %>
+                                -
+                            <%} else if (a.value < 0) { %>
+                                (<span class="currency">
+                                    <%= a.value %>
+                                </span>)
+                            <% } else {%>
+                                <span class="currency">
+                                    <%= a.value %>
+                                </span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% totalShortLiabil +=a.value %>
+                <% }) %>
+
+                <!-- Total liabilitas jangka pendek -->
+                <% if (accShortLiabilities.length > 0) { %>
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Total Liabilitas Jangka Pendek
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            <% if (totalShortLiabil === 0) { %>
+                                -
+                            <% } else if (totalShortLiabil < 0) { %>
+                                (<span class="currency"><%= totalShortLiabil %></span>)
+                            <% } else { %>
+                                <span class="currency"><%= totalShortLiabil %></span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+
+                <!-- Liabilitas jangka panjang -->
+                <% if (accLongLiabilities.length > 0) { %> 
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Liabilitas Jangka Panjang
+                        </th>
+                        <th></th>
+                    </tr>
+                <% } else { %>
+                    <tr>
+                        <td colspan="2" class="fst-italic">
+                            Liabilitas Jangka Panjang
+                        </td>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">-</th>
+                    </tr>
+                <% } %>
+
+                <!-- akun liabilitas jangka panjang -->
+                <% let totalLongLiabil = 0 %> 
+                <% accLongLiabilities.forEach(a=> { %>
+                    <tr>
+                        <td>
+                            <%= a.accChildCode %>
+                        </td>
+                        <td>
+                            <%= a.accChildName %>
+                        </td>
+                        <td class="text-end">
+                            <% if (a.value === 0) { %>
+                                - 
+                            <%} else if (a.value < 0) { %>
+                                (<span class="currency"><%= a.value %></span>)
+                            <% } else {%>
+                                    <span class="currency"><%= a.value %></span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <% totalLongLiabil += a.value %>
+                <% }) %>
+
+                <!-- Total liabilitas jangka panjang -->
+                <% if (accLongLiabilities.length > 0) { %> 
+                    <tr>
+                        <th colspan="2" class="fst-italic">
+                            Total Liabilitas Jangka Panjang
+                        </th>
+                        <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                            <% if (totalLongLiabil===0) { %>
+                                -
+                            <% } else if (totalLongLiabil < 0) { %>
+                                (<span class="currency">
+                                    <%= totalLongLiabil %>
+                                </span>)
+                            <% } else { %>
+                                <span class="currency">
+                                    <%= totalLongLiabil %>
+                                </span>
+                            <% } %>
+                        </th>
+                    </tr>
+                <% } %>
+
+                <!-- Total Liabilitas -->
+                <tr>
+                    <th colspan="2">
+                        TOTAL LIABILITAS
+                    </th>
+                    <% let totalLiabil = totalShortLiabil + totalLongLiabil %> 
+                    <th class="text-end" style="border-bottom: 2px solid grey; border-top: 1px solid grey;">
+                        <% if (totalLiabil==0) { %>
+                            -
+                        <% } else if (totalLiabil < 0) { %>
+                            (<span class="currency">
+                                <%= totalLiabil %>
+                            </span>)
+                        <% } else { %>
+                            <span class="currency">
+                                <%= totalLiabil %>
+                            </span>
+                        <% } %>
+                    </th>
+                </tr>
+
+                <!-- spasi -->
+                <tr>
+                    <th colspan="3" class="p-0">&nbsp;</th>
+                </tr>
+
+                <!-- Ekuitas Aset Neto -->
+                <tr>
+                    <th colspan="2">
+                        ASET NETO
+                    </th>
+                    <th></th>
+                </tr>
+
+                <!-- Tanpa pembatasan -->
+                <tr>
+                    <td>
+                        <%= netAssetCode %> 
+                    </td>
+                    <td>
+                        Tanpa Pembatasan dari Pemberi Sumber Daya
+                    </td>
+                    <td class="text-end">
+                        <% if (netAssetBalance === 0) { %>
+                            -
+                        <% } else if  (netAssetBalance < 0) { %>
+                            (<span class="currency">
+                                <%= netAssetBalance %>
+                            </span>)
+                        <% } else { %>
+                            <span class="currency">
+                                <%= netAssetBalance %>
+                            </span>
+                        <% } %>
+                    </td>
+                </tr>
+
+                <!-- dengan pembatasan -->
+                <tr>
+                    <td>
+                        <%= netAssetRCode %>
+                    </td>
+                    <td>
+                        Dengan Pembatasan dari Pemberi Sumber Daya
+                    </td>
+                    <td class="text-end">
+                        <% if (netAssetRBalance===0) { %>
+                            -
+                        <% } else if (netAssetRBalance < 0) { %>
+                            (<span class="currency">
+                                <%= netAssetRBalance %>
+                            </span>)
+                        <% } else { %>
+                            <span class="currency">
+                                <%= netAssetRBalance %>
+                            </span>
+                        <% } %>
+                    </td>
+                </tr>
+
+                <!-- Total aset neto -->
+                <tr>
+                    <th colspan="2">
+                        Total Aset Neto
+                    </th>
+                    <% const totalNetAsset = netAssetBalance + netAssetRBalance %> 
+                    <th class="text-end" style="border-bottom: 1px solid grey; border-top: 1px solid grey;">
+                        <% if (totalNetAsset === 0) { %>
+                            -
+                        <% } else if (totalNetAsset < 0) { %>
+                            (<span class="currency"><%= totalNetAsset %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= totalNetAsset %></span>
+                        <% } %>
+                    </th>
+                </tr>
+
+                <!-- spasi -->
+                <tr>
+                    <th colspan="3" class="p-0">&nbsp;</th>
+                </tr>
+
+                <!-- Total liabilitas dan aset neto -->
+                <tr>
+                    <th colspan="2">
+                        TOTAL LIABILITAS DAN ASET NETO
+                    </th>
+                    <% const liabilNetAsset = totalLiabil + totalNetAsset %> 
+                    <th class="text-end" style="border-bottom: 2px solid grey; border-top: 1px solid grey;">
+                        <% if (liabilNetAsset === 0) { %>
+                            -
+                        <% } else if (liabilNetAsset < 0) { %>
+                            (<span class="currency"><%= liabilNetAsset %></span>)
+                        <% } else { %>
+                            <span class="currency"><%= liabilNetAsset %></span>
+                        <% } %>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const myDate1 = () => {
+        document.getElementById('date1').hidden = true
+        document.getElementById('date2').hidden = false
+    }
+</script>
