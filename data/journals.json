@@ -1,0 +1,799 @@
+[{
+  "_id": {
+    "$oid": "628c7a8924968805b8781646"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1640908800000"
+    }
+  },
+  "description": "neraca awal",
+  "ref": "ob",
+  "transNumber": 100001,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b8781647"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 70000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b8781648"
+      },
+      "accChildId": "6276413ee372c762bccc69d6",
+      "debet": 250000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b8781649"
+      },
+      "accChildId": "6278a45f10d87624c8874f82",
+      "debet": 200000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b878164a"
+      },
+      "accChildId": "628770aa071c93308082fc48",
+      "debet": 20000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b878164b"
+      },
+      "accChildId": "6278878e9e9554431ce8c571",
+      "debet": 24000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b878164c"
+      },
+      "accChildId": "627887b99e9554431ce8c572",
+      "debet": 14000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b878164d"
+      },
+      "accChildId": "627888d79e9554431ce8c57b",
+      "debet": 220000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b878164e"
+      },
+      "accChildId": "62876829071c93308082fc2b",
+      "debet": 0,
+      "credit": 30000000
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b878164f"
+      },
+      "accChildId": "627889ed9e9554431ce8c583",
+      "debet": 0,
+      "credit": 490000000
+    },
+    {
+      "_id": {
+        "$oid": "628c7a8924968805b8781650"
+      },
+      "accChildId": "62788a019e9554431ce8c584",
+      "debet": 0,
+      "credit": 278000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c878acf6d514788df8916"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1641427200000"
+    }
+  },
+  "description": "terima uang melalu bank mandiri",
+  "ref": "gj",
+  "transNumber": 100005,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c878acf6d514788df8917"
+      },
+      "accChildId": "6276413ee372c762bccc69d6",
+      "debet": 30000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c878acf6d514788df8918"
+      },
+      "accChildId": "62788a6b9e9554431ce8c585",
+      "debet": 0,
+      "credit": 30000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c87fbcf6d514788df8919"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1641600000000"
+    }
+  },
+  "description": "beli materai",
+  "ref": "gj",
+  "transNumber": 100006,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c87fbcf6d514788df891a"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 0,
+      "credit": 1000000
+    },
+    {
+      "_id": {
+        "$oid": "628c87fbcf6d514788df891b"
+      },
+      "accChildId": "62788dfa9e9554431ce8c58e",
+      "debet": 1000000,
+      "credit": 0
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c88d5cf6d514788df891c"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1641859200000"
+    }
+  },
+  "description": "biaya transfer bank mandiri",
+  "ref": "gj",
+  "transNumber": 100007,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c88d5cf6d514788df891d"
+      },
+      "accChildId": "62788f219e9554431ce8c594",
+      "debet": 6500,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c88d5cf6d514788df891e"
+      },
+      "accChildId": "6276413ee372c762bccc69d6",
+      "debet": 0,
+      "credit": 6500
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8a5ecf6d514788df891f"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1641859200000"
+    }
+  },
+  "description": "biaya pelatihan akuntansi",
+  "ref": "gj",
+  "transNumber": 100008,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8a5ecf6d514788df8920"
+      },
+      "accChildId": "62788de19e9554431ce8c58d",
+      "debet": 10000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8a5ecf6d514788df8921"
+      },
+      "accChildId": "6276413ee372c762bccc69d6",
+      "debet": 0,
+      "credit": 10000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8ac2cf6d514788df8922"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1641945600000"
+    }
+  },
+  "description": "tarik tunai bri",
+  "ref": "gj",
+  "transNumber": 100009,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8ac2cf6d514788df8923"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 50000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8ac2cf6d514788df8924"
+      },
+      "accChildId": "6278a45f10d87624c8874f82",
+      "debet": 0,
+      "credit": 50000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8b60cf6d514788df8928"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1642204800000"
+    }
+  },
+  "description": "bayar listrik",
+  "ref": "gj",
+  "transNumber": 100010,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8b60cf6d514788df8929"
+      },
+      "accChildId": "628c8b00cf6d514788df8925",
+      "debet": 1200000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8b60cf6d514788df892a"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 0,
+      "credit": 1200000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8b9fcf6d514788df892b"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1642464000000"
+    }
+  },
+  "description": "pelunasan hutang",
+  "ref": "gj",
+  "transNumber": 100011,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8b9fcf6d514788df892c"
+      },
+      "accChildId": "62876829071c93308082fc2b",
+      "debet": 30000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8b9fcf6d514788df892d"
+      },
+      "accChildId": "6276413ee372c762bccc69d6",
+      "debet": 0,
+      "credit": 30000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8bd1cf6d514788df892e"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1642723200000"
+    }
+  },
+  "description": "service kendaraan",
+  "ref": "gj",
+  "transNumber": 100012,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8bd1cf6d514788df892f"
+      },
+      "accChildId": "628c8b18cf6d514788df8926",
+      "debet": 830000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8bd1cf6d514788df8930"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 0,
+      "credit": 830000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8bfdcf6d514788df8931"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1642896000000"
+    }
+  },
+  "description": "kasbon karyawan",
+  "ref": "gj",
+  "transNumber": 100013,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8bfdcf6d514788df8932"
+      },
+      "accChildId": "6287703f071c93308082fc47",
+      "debet": 5000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8bfdcf6d514788df8933"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 0,
+      "credit": 5000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8cd9cf6d514788df8937"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1642982400000"
+    }
+  },
+  "description": "terima dari donatur",
+  "ref": "gj",
+  "transNumber": 100015,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8cd9cf6d514788df8938"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 40000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8cd9cf6d514788df8939"
+      },
+      "accChildId": "62788a6b9e9554431ce8c585",
+      "debet": 0,
+      "credit": 40000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8d07cf6d514788df893a"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1643068800000"
+    }
+  },
+  "description": "setor tunai bri",
+  "ref": "gj",
+  "transNumber": 100016,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8d07cf6d514788df893b"
+      },
+      "accChildId": "6278a45f10d87624c8874f82",
+      "debet": 40000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8d07cf6d514788df893c"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 0,
+      "credit": 40000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8d37cf6d514788df893d"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1643155200000"
+    }
+  },
+  "description": "biaya lain-lain",
+  "ref": "gj",
+  "transNumber": 100017,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8d37cf6d514788df893e"
+      },
+      "accChildId": "62788e4a9e9554431ce8c591",
+      "debet": 1500000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8d37cf6d514788df893f"
+      },
+      "accChildId": "62763ebee372c762bccc69d5",
+      "debet": 0,
+      "credit": 1500000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8d70cf6d514788df8940"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1643328000000"
+    }
+  },
+  "description": "pendapatan jasa giro",
+  "ref": "gj",
+  "transNumber": 100018,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8d70cf6d514788df8941"
+      },
+      "accChildId": "6276413ee372c762bccc69d6",
+      "debet": 8000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8d70cf6d514788df8942"
+      },
+      "accChildId": "62788eca9e9554431ce8c592",
+      "debet": 0,
+      "credit": 8000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8db5cf6d514788df8943"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1643328000000"
+    }
+  },
+  "description": "admin bank",
+  "ref": "gj",
+  "transNumber": 100019,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8db5cf6d514788df8944"
+      },
+      "accChildId": "62788f219e9554431ce8c594",
+      "debet": 15000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8db5cf6d514788df8945"
+      },
+      "accChildId": "6276413ee372c762bccc69d6",
+      "debet": 0,
+      "credit": 15000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8f78cf6d514788df894c"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1642896000000"
+    }
+  },
+  "description": "penerimaan sumbangan yg dibatasi",
+  "ref": "gj",
+  "transNumber": 100022,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628c8f78cf6d514788df894d"
+      },
+      "accChildId": "6278a45f10d87624c8874f82",
+      "debet": 100000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628c8f78cf6d514788df894e"
+      },
+      "accChildId": "62788d319e9554431ce8c58a",
+      "debet": 0,
+      "credit": 100000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628de98a70448437607d974b"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1643932800000"
+    }
+  },
+  "description": "Penerimaan sumbangan dari donatur",
+  "ref": "rj",
+  "transNumber": 100023,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628de98a70448437607d974c"
+      },
+      "accChildId": "627641ece372c762bccc69d8",
+      "debet": 60000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628de98a70448437607d974d"
+      },
+      "accChildId": "62788a6b9e9554431ce8c585",
+      "debet": 0,
+      "credit": 60000000,
+      "info": "dari BFDW"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628dec2f70448437607d974f"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1644278400000"
+    }
+  },
+  "description": "penarikan uang muka untuk kegiatan penghijauan",
+  "ref": "dj",
+  "transNumber": 100024,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628dec2f70448437607d9750"
+      },
+      "accChildId": "628deac470448437607d974e",
+      "debet": 59000000,
+      "credit": 0,
+      "info": "uang muka"
+    },
+    {
+      "_id": {
+        "$oid": "628dec2f70448437607d9751"
+      },
+      "accChildId": "627641ece372c762bccc69d8",
+      "debet": 0,
+      "credit": 59000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628df26f70448437607d9756"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1644451200000"
+    }
+  },
+  "description": "pertanggungjawaban uang muka kegiatan penghijauan",
+  "ref": "gj",
+  "transNumber": 100025,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628df26f70448437607d9757"
+      },
+      "accChildId": "628dee6470448437607d9752",
+      "debet": 18000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df26f70448437607d9758"
+      },
+      "accChildId": "628deee670448437607d9753",
+      "debet": 27000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df26f70448437607d9759"
+      },
+      "accChildId": "628def1270448437607d9754",
+      "debet": 9000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df26f70448437607d975a"
+      },
+      "accChildId": "628def3270448437607d9755",
+      "debet": 5000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df26f70448437607d975b"
+      },
+      "accChildId": "628deac470448437607d974e",
+      "debet": 0,
+      "credit": 59000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628df5b870448437607d975c"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1645142400000"
+    }
+  },
+  "description": "sumbangan dari donatur bank BRI",
+  "ref": "rj",
+  "transNumber": 100026,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628df5b870448437607d975d"
+      },
+      "accChildId": "6278a45f10d87624c8874f82",
+      "debet": 66000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df5b870448437607d975e"
+      },
+      "accChildId": "62788a6b9e9554431ce8c585",
+      "debet": 0,
+      "credit": 66000000,
+      "info": "sumbangan donatur"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628df66b70448437607d975f"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1645488000000"
+    }
+  },
+  "description": "uang muka kegiatan pelatihan akuntansi",
+  "ref": "dj",
+  "transNumber": 100027,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628df66b70448437607d9760"
+      },
+      "accChildId": "628deac470448437607d974e",
+      "debet": 66000000,
+      "credit": 0,
+      "info": "uang muka"
+    },
+    {
+      "_id": {
+        "$oid": "628df66b70448437607d9761"
+      },
+      "accChildId": "6278a45f10d87624c8874f82",
+      "debet": 0,
+      "credit": 66000000
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628df73970448437607d9763"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1645920000000"
+    }
+  },
+  "description": "pertanggungjawaban kegiatan pelatihan akuntansi",
+  "ref": "gj",
+  "transNumber": 100028,
+  "journalTrans": [
+    {
+      "_id": {
+        "$oid": "628df73970448437607d9764"
+      },
+      "accChildId": "628dee6470448437607d9752",
+      "debet": 22000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df73970448437607d9765"
+      },
+      "accChildId": "628df6a070448437607d9762",
+      "debet": 31000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df73970448437607d9766"
+      },
+      "accChildId": "62788de19e9554431ce8c58d",
+      "debet": 10000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df73970448437607d9767"
+      },
+      "accChildId": "62788e4a9e9554431ce8c591",
+      "debet": 3000000,
+      "credit": 0
+    },
+    {
+      "_id": {
+        "$oid": "628df73970448437607d9768"
+      },
+      "accChildId": "628deac470448437607d974e",
+      "debet": 0,
+      "credit": 66000000
+    }
+  ],
+  "__v": 0
+}]

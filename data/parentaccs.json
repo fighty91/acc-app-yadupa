@@ -1,0 +1,159 @@
+[{
+  "_id": {
+    "$oid": "62763963bcf662296082800d"
+  },
+  "accName": "Kas",
+  "accCode": "1-11000",
+  "accBalance": "d",
+  "accType": "6275580381d31a151c476bc4",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627883e99e9554431ce8c567"
+  },
+  "accName": "Piutang",
+  "accCode": "1-13000",
+  "accBalance": "d",
+  "accType": "6275580381d31a151c476bc4",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627886119e9554431ce8c568"
+  },
+  "accName": "Investasi Jangka Pendek",
+  "accCode": "1-15000",
+  "accBalance": "d",
+  "accType": "6275580381d31a151c476bc4",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6278863c9e9554431ce8c569"
+  },
+  "accName": "Biaya Dibayar di Muka",
+  "accCode": "1-16000",
+  "accBalance": "d",
+  "accType": "6275580381d31a151c476bc4",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6278865e9e9554431ce8c56a"
+  },
+  "accName": "Properti Investasi",
+  "accCode": "1-17000",
+  "accBalance": "d",
+  "accType": "627883359e9554431ce8c562",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627886809e9554431ce8c56b"
+  },
+  "accName": "Investasi Jangka Panjang",
+  "accCode": "1-18000",
+  "accBalance": "d",
+  "accType": "627883359e9554431ce8c562",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627886989e9554431ce8c56c"
+  },
+  "accName": "Aset Tetap",
+  "accCode": "1-20000",
+  "accBalance": "d",
+  "accType": "627883359e9554431ce8c562",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627886bf9e9554431ce8c56d"
+  },
+  "accName": "Liabilitas Jangka Pendek",
+  "accCode": "2-10000",
+  "accBalance": "k",
+  "accType": "627883409e9554431ce8c563",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627886d89e9554431ce8c56e"
+  },
+  "accName": "Liabilitas Jangka Panjang",
+  "accCode": "2-20000",
+  "accBalance": "k",
+  "accType": "627883409e9554431ce8c563",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627886f79e9554431ce8c56f"
+  },
+  "accName": "Aset Neto",
+  "accCode": "3-10000",
+  "accBalance": "k",
+  "accType": "627883509e9554431ce8c564",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888639e9554431ce8c575"
+  },
+  "accName": "Pendapatan Tanpa Pembatasan dari Pemberi Sumber Daya",
+  "accCode": "4-10000",
+  "accBalance": "k",
+  "accType": "6278835b9e9554431ce8c565",
+  "important": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888809e9554431ce8c576"
+  },
+  "accName": "Pendapatan Dengan Pembatasan dari Pemberi Sumber Daya",
+  "accCode": "4-20000",
+  "accBalance": "k",
+  "accType": "6278835b9e9554431ce8c565",
+  "important": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888af9e9554431ce8c579"
+  },
+  "accName": "Beban Tanpa Pembatasan dari Pemberi Sumber Daya",
+  "accCode": "5-10000",
+  "accBalance": "d",
+  "accType": "627883609e9554431ce8c566",
+  "important": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888e09e9554431ce8c57c"
+  },
+  "accName": "Beban Dengan Pembatasan dari Pemberi Sumber Daya",
+  "accCode": "5-20000",
+  "accBalance": "d",
+  "accType": "627883609e9554431ce8c566",
+  "important": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888f59e9554431ce8c57e"
+  },
+  "accName": "Pendapatan dan Beban Komprehensif Lainnya",
+  "accCode": "6-10000",
+  "accBalance": "d",
+  "accType": "627883609e9554431ce8c566",
+  "important": true,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6286dff3b3a7a129489f8ae0"
+  },
+  "accName": "Bank",
+  "accCode": "1-12000",
+  "accBalance": "d",
+  "accType": "6275580381d31a151c476bc4",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6286e2e2143063486cac9bf9"
+  },
+  "accName": "Uang Muka Program",
+  "accCode": "1-14000",
+  "accBalance": "d",
+  "accType": "6275580381d31a151c476bc4",
+  "__v": 0
+}]

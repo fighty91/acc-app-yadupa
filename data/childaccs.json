@@ -1,0 +1,820 @@
+[{
+  "_id": {
+    "$oid": "62763ebee372c762bccc69d5"
+  },
+  "accChildName": "Kas",
+  "parentAcc": "62763963bcf662296082800d",
+  "accChildCode": "1-11001",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6276413ee372c762bccc69d6"
+  },
+  "accChildName": "Bank Mandiri",
+  "parentAcc": "6286dff3b3a7a129489f8ae0",
+  "accChildCode": "1-12002",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62764152e372c762bccc69d7"
+  },
+  "accChildName": "Bank BNI",
+  "parentAcc": "6286dff3b3a7a129489f8ae0",
+  "accChildCode": "1-12003",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627641ece372c762bccc69d8"
+  },
+  "accChildName": "Bank BCA",
+  "parentAcc": "6286dff3b3a7a129489f8ae0",
+  "accChildCode": "1-12001",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6278871b9e9554431ce8c570"
+  },
+  "accChildName": "Piutang Bunga",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13005",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6278878e9e9554431ce8c571"
+  },
+  "accChildName": "Sewa Dibayar di Muka",
+  "parentAcc": "6278863c9e9554431ce8c569",
+  "accChildCode": "1-16001",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627887b99e9554431ce8c572"
+  },
+  "accChildName": "Asuransi Dibayar di Muka",
+  "parentAcc": "6278863c9e9554431ce8c569",
+  "accChildCode": "1-16002",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888499e9554431ce8c573"
+  },
+  "accChildName": "Inventaris Kantor",
+  "parentAcc": "627886989e9554431ce8c56c",
+  "accChildCode": "1-21101",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888889e9554431ce8c577"
+  },
+  "accChildName": "Akumulasi Penyusutan Inventaris Kantor",
+  "parentAcc": "627886989e9554431ce8c56c",
+  "accChildCode": "1-21102",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888979e9554431ce8c578"
+  },
+  "accChildName": "Kendaraan",
+  "parentAcc": "627886989e9554431ce8c56c",
+  "accChildCode": "1-21201",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888b29e9554431ce8c57a"
+  },
+  "accChildName": "Akumulasi Penyusutan Kendaraan",
+  "parentAcc": "627886989e9554431ce8c56c",
+  "accChildCode": "1-21202",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888d79e9554431ce8c57b"
+  },
+  "accChildName": "Bangunan",
+  "parentAcc": "627886989e9554431ce8c56c",
+  "accChildCode": "1-21301",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627888ef9e9554431ce8c57d"
+  },
+  "accChildName": "Akumulasi Penyusutan Bangunan",
+  "parentAcc": "627886989e9554431ce8c56c",
+  "accChildCode": "1-21302",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627889219e9554431ce8c57f"
+  },
+  "accChildName": "Hutang PKN - Comdev",
+  "parentAcc": "627886bf9e9554431ce8c56d",
+  "accChildCode": "2-11001",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6278893f9e9554431ce8c580"
+  },
+  "accChildName": "Hutang Saving Karyawan",
+  "parentAcc": "627886bf9e9554431ce8c56d",
+  "accChildCode": "2-11002",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627889669e9554431ce8c581"
+  },
+  "accChildName": "Hutang Jangka Panjang",
+  "parentAcc": "627886d89e9554431ce8c56e",
+  "accChildCode": "2-21001",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6278899d9e9554431ce8c582"
+  },
+  "accChildName": "Liabilitas Imbalan Kerja",
+  "parentAcc": "627886d89e9554431ce8c56e",
+  "accChildCode": "2-21002",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "627889ed9e9554431ce8c583"
+  },
+  "accChildName": "Aset Neto Tanpa Pembatasan dari Pemberi Sumber Daya",
+  "parentAcc": "627886f79e9554431ce8c56f",
+  "accChildCode": "3-11000",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788a019e9554431ce8c584"
+  },
+  "accChildName": "Aset Neto Dengan Pembatasan dari Pemberi Sumber Daya",
+  "parentAcc": "627886f79e9554431ce8c56f",
+  "accChildCode": "3-12000",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788a6b9e9554431ce8c585"
+  },
+  "accChildName": "Penerimaan Sumbangan",
+  "parentAcc": "627888639e9554431ce8c575",
+  "accChildCode": "4-11001",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788a8a9e9554431ce8c586"
+  },
+  "accChildName": "Penerimaan Jasa Layanan",
+  "parentAcc": "627888639e9554431ce8c575",
+  "accChildCode": "4-11002",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788afb9e9554431ce8c587"
+  },
+  "accChildName": "Penghasilan Investasi Jangka Pendek",
+  "parentAcc": "627888639e9554431ce8c575",
+  "accChildCode": "4-11003",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788b189e9554431ce8c588"
+  },
+  "accChildName": "Penghasilan Investasi Jangka Panjang",
+  "parentAcc": "627888639e9554431ce8c575",
+  "accChildCode": "4-11004",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788b6d9e9554431ce8c589"
+  },
+  "accChildName": "Penerimaan Tanpa Pembatasan Lain-lain",
+  "parentAcc": "627888639e9554431ce8c575",
+  "accChildCode": "4-11100",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788d319e9554431ce8c58a"
+  },
+  "accChildName": "Penerimaan Sumbangan Dengan Pembatasan",
+  "parentAcc": "627888809e9554431ce8c576",
+  "accChildCode": "4-21001",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788d559e9554431ce8c58b"
+  },
+  "accChildName": "Penghasilan Investasi Jangka Panjang Dengan Pembatasan",
+  "parentAcc": "627888809e9554431ce8c576",
+  "accChildCode": "4-21002",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788dc99e9554431ce8c58c"
+  },
+  "accChildName": "Biaya Gaji dan Upah",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11001",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788de19e9554431ce8c58d"
+  },
+  "accChildName": "Biaya Jasa dan Profesional",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11002",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788dfa9e9554431ce8c58e"
+  },
+  "accChildName": "Biaya Administratif",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11003",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788e1b9e9554431ce8c58f"
+  },
+  "accChildName": "Biaya Depresiasi",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11004",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788e309e9554431ce8c590"
+  },
+  "accChildName": "Biaya Bunga",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11005",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788e4a9e9554431ce8c591"
+  },
+  "accChildName": "Biaya Tanpa Pembatasan Lain-lain",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11100",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788eca9e9554431ce8c592"
+  },
+  "accChildName": "Pendapatan Jasa Giro dan Bunga Bank",
+  "parentAcc": "627888f59e9554431ce8c57e",
+  "accChildCode": "6-11001",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788f0d9e9554431ce8c593"
+  },
+  "accChildName": "Pendapatan Komprehensif Lain-lain",
+  "parentAcc": "627888f59e9554431ce8c57e",
+  "accChildCode": "6-11100",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788f219e9554431ce8c594"
+  },
+  "accChildName": "Biaya Administrasi Bank",
+  "parentAcc": "627888f59e9554431ce8c57e",
+  "accChildCode": "6-12001",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62788f349e9554431ce8c595"
+  },
+  "accChildName": "Biaya Komprehensif Lain-lain",
+  "parentAcc": "627888f59e9554431ce8c57e",
+  "accChildCode": "6-12100",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6278a45f10d87624c8874f82"
+  },
+  "accChildName": "Bank BRI",
+  "parentAcc": "6286dff3b3a7a129489f8ae0",
+  "accChildCode": "1-12004",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6278a49310d87624c8874f83"
+  },
+  "accChildName": "Bank Danamon",
+  "parentAcc": "6286dff3b3a7a129489f8ae0",
+  "accChildCode": "1-12005",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6286ecce10e18c2a24754541"
+  },
+  "accChildName": "Biaya Dengan Pembatasan Lain-lain",
+  "parentAcc": "627888e09e9554431ce8c57c",
+  "accChildCode": "5-21100",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876423071c93308082fc25"
+  },
+  "accChildName": "Penerimaan Dengan Pembatasan Lain-lain",
+  "parentAcc": "627888809e9554431ce8c576",
+  "accChildCode": "4-21100",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628766f3071c93308082fc26"
+  },
+  "accChildName": "Hutang Program Lobby Advokasi",
+  "parentAcc": "627886bf9e9554431ce8c56d",
+  "accChildCode": "2-11003",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876735071c93308082fc27"
+  },
+  "accChildName": "Hutang DHT / DKK",
+  "parentAcc": "627886bf9e9554431ce8c56d",
+  "accChildCode": "2-11004",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6287675e071c93308082fc28"
+  },
+  "accChildName": "Hutang Comdev",
+  "parentAcc": "627886bf9e9554431ce8c56d",
+  "accChildCode": "2-11005",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876785071c93308082fc29"
+  },
+  "accChildName": "Hutang Saving Lembaga",
+  "parentAcc": "627886bf9e9554431ce8c56d",
+  "accChildCode": "2-11006",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628767b7071c93308082fc2a"
+  },
+  "accChildName": "Hutang Karyawan",
+  "parentAcc": "627886bf9e9554431ce8c56d",
+  "accChildCode": "2-11007",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876829071c93308082fc2b"
+  },
+  "accChildName": "Hutang Biaya",
+  "parentAcc": "627886bf9e9554431ce8c56d",
+  "accChildCode": "2-11008",
+  "accChildBalance": "k",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876a9a071c93308082fc2c"
+  },
+  "accChildName": "Tanah",
+  "parentAcc": "627886989e9554431ce8c56c",
+  "accChildCode": "1-22100",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876bdd071c93308082fc2d"
+  },
+  "accChildName": "U/M Program COMDEV",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14001",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876bf8071c93308082fc2e"
+  },
+  "accChildName": "U/M Program JABUD",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14002",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876c33071c93308082fc2f"
+  },
+  "accChildName": "U/M Experts Consultation",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14003",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876c62071c93308082fc30"
+  },
+  "accChildName": "U/M from Previous Project",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14100",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876c81071c93308082fc31"
+  },
+  "accChildName": "U/M Operasional Kantor",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14020",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876ca1071c93308082fc32"
+  },
+  "accChildName": "U/M External Evaluation",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14019",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876cbe071c93308082fc33"
+  },
+  "accChildName": "U/M Gaji",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14018",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876ce9071c93308082fc34"
+  },
+  "accChildName": "U/M Equipment",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14017",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876d08071c93308082fc35"
+  },
+  "accChildName": "U/M Admin Salaries",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14016",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876d26071c93308082fc36"
+  },
+  "accChildName": "U/M Program Salaries",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14015",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876d42071c93308082fc37"
+  },
+  "accChildName": "U/M Administrasi",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14014",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876d61071c93308082fc38"
+  },
+  "accChildName": "U/M Monitoring Meetings",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14013",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876d79071c93308082fc39"
+  },
+  "accChildName": "U/M Scholarships",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14012",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876d91071c93308082fc3a"
+  },
+  "accChildName": "U/M  Advocacy Training Young Peoples",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14011",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876db1071c93308082fc3b"
+  },
+  "accChildName": "U/M  Awareness GEMPHA",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14010",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876e01071c93308082fc3c"
+  },
+  "accChildName": "U/M  Speech and Story Competitions",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14009",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876e2a071c93308082fc3d"
+  },
+  "accChildName": "U/M Debates",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14008",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876e49071c93308082fc3e"
+  },
+  "accChildName": "U/M Assesment Depopulation",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14007",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876e60071c93308082fc3f"
+  },
+  "accChildName": "U/M  Customary Council Training",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14006",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876e94071c93308082fc40"
+  },
+  "accChildName": "U/M  Indigenous People Rights",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14005",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876eb5071c93308082fc41"
+  },
+  "accChildName": "U/M Judical Review",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14004",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876f4d071c93308082fc42"
+  },
+  "accChildName": "Piutang Lainnya",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13100",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876f8c071c93308082fc43"
+  },
+  "accChildName": "Piutang Program Comdev",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13001",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876fbe071c93308082fc44"
+  },
+  "accChildName": "Piutang Program IUCN",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13002",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62876fe6071c93308082fc45"
+  },
+  "accChildName": "Piutang Program Lobby & Advokasi",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13003",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62877011071c93308082fc46"
+  },
+  "accChildName": "Piutang ADM",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13004",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6287703f071c93308082fc47"
+  },
+  "accChildName": "Piutang Karyawan",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13009",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628770aa071c93308082fc48"
+  },
+  "accChildName": "Piutang Lembaga - Program",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13008",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628770e0071c93308082fc49"
+  },
+  "accChildName": "Piutang Lembaga",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13007",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62877105071c93308082fc4a"
+  },
+  "accChildName": "Piutang DAP",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13006",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6287712d071c93308082fc4b"
+  },
+  "accChildName": "Piutang Prev. Project",
+  "parentAcc": "627883e99e9554431ce8c567",
+  "accChildCode": "1-13010",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628773e9071c93308082fc4c"
+  },
+  "accChildName": "Kas Kecil PKN",
+  "parentAcc": "62763963bcf662296082800d",
+  "accChildCode": "1-11002",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628773fe071c93308082fc4d"
+  },
+  "accChildName": "Kas Kecil IUCN",
+  "parentAcc": "62763963bcf662296082800d",
+  "accChildCode": "1-11003",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6287741b071c93308082fc4e"
+  },
+  "accChildName": "Kas Lobby & Advokasi",
+  "parentAcc": "62763963bcf662296082800d",
+  "accChildCode": "1-11004",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62877431071c93308082fc4f"
+  },
+  "accChildName": "Kas Kecil - Kelebihan Penarikan",
+  "parentAcc": "62763963bcf662296082800d",
+  "accChildCode": "1-11005",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8b00cf6d514788df8925"
+  },
+  "accChildName": "Biaya Listrik dan Air",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11006",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8b18cf6d514788df8926"
+  },
+  "accChildName": "Biaya Pemeliharaan",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11007",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628c8b2ccf6d514788df8927"
+  },
+  "accChildName": "Biaya Penyusutan",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11008",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628deac470448437607d974e"
+  },
+  "accChildName": "Uang Muka Kegiatan",
+  "parentAcc": "6286e2e2143063486cac9bf9",
+  "accChildCode": "1-14201",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628dee6470448437607d9752"
+  },
+  "accChildName": "Biaya perlengkapan",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11009",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628deee670448437607d9753"
+  },
+  "accChildName": "Biaya Pengadaan bibit",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11010",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628def1270448437607d9754"
+  },
+  "accChildName": "Biaya Konsumsi Kegiatan",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11011",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628def3270448437607d9755"
+  },
+  "accChildName": "Biaya Transportasi Kegiatan",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11012",
+  "accChildBalance": "d",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628df6a070448437607d9762"
+  },
+  "accChildName": "Biaya Akomodasi",
+  "parentAcc": "627888af9e9554431ce8c579",
+  "accChildCode": "5-11014",
+  "accChildBalance": "d",
+  "__v": 0
+}]

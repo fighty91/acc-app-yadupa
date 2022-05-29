@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "6275580381d31a151c476bc4"
+  },
+  "typeName": "Aset Lancar",
+  "__v": 0,
+  "fState": "nr"
+},{
+  "_id": {
+    "$oid": "627883359e9554431ce8c562"
+  },
+  "typeName": "Aset Tidak Lancar",
+  "__v": 0,
+  "fState": "nr"
+},{
+  "_id": {
+    "$oid": "627883409e9554431ce8c563"
+  },
+  "typeName": "Liabilitas",
+  "__v": 0,
+  "fState": "nr"
+},{
+  "_id": {
+    "$oid": "627883509e9554431ce8c564"
+  },
+  "typeName": "Ekuitas",
+  "__v": 0,
+  "fState": "nr"
+},{
+  "_id": {
+    "$oid": "6278835b9e9554431ce8c565"
+  },
+  "typeName": "Pendapatan",
+  "__v": 0,
+  "fState": "pl"
+},{
+  "_id": {
+    "$oid": "627883609e9554431ce8c566"
+  },
+  "typeName": "Beban",
+  "__v": 0,
+  "fState": "pl"
+}]
